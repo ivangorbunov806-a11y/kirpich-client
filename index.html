@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Гибкий декоративный кирпич — Саранск</title>
+  <title>Гибкий Кирпич — Саранск</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script>
@@ -56,7 +56,7 @@
      ==================================================== -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-stone-900/90 backdrop-blur-sm border-b border-stone-800">
   <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-    <span class="font-heading font-bold text-amber-500 text-xl tracking-wide uppercase">КирпичДекор</span>
+    <span class="font-heading font-bold text-amber-500 text-xl tracking-wide uppercase">Гибкий Кирпич</span>
     <nav class="hidden md:flex items-center gap-6 text-sm text-stone-300">
       <a href="#catalog"   class="hover:text-amber-400 transition-colors">Каталог</a>
       <a href="#apply"     class="hover:text-amber-400 transition-colors">Применение</a>
@@ -82,13 +82,13 @@
   <!-- Desktop image -->
   <img
     src="img/hero-desktop.webp"
-    alt="Гибкий декоративный кирпич — отделка фасада"
+    alt="Гибкий Кирпич — отделка фасада"
     class="absolute inset-0 w-full h-full object-cover object-center hidden md:block"
   />
   <!-- Mobile image -->
   <img
     src="img/hero-mobile.webp"
-    alt="Гибкий декоративный кирпич — отделка фасада"
+    alt="Гибкий Кирпич — отделка фасада"
     class="absolute inset-0 w-full h-full object-cover object-center md:hidden"
   />
 
@@ -173,12 +173,13 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+    <!-- Сетка: 8 образцов + карточка палитры (вертикальная, занимает 2 строки на lg) -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:grid-rows-[auto_auto]">
 
       <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr-.webp"
-               alt="Терракотовый гибкий кирпич" class="w-full h-full object-cover" />
+               alt="Терракотовый гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -191,7 +192,7 @@
       <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4.webp"
-               alt="Янтарный гибкий кирпич" class="w-full h-full object-cover" />
+               alt="Янтарный гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -204,7 +205,7 @@
       <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf.webp"
-               alt="Коричневый гибкий кирпич" class="w-full h-full object-cover" />
+               alt="Коричневый гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -214,10 +215,22 @@
         </div>
       </div>
 
+      <!-- Карточка палитры — вертикальная, row-span-2 на lg (4 колонки) -->
+      <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer
+                  row-span-1 lg:row-span-2 lg:col-start-4 lg:row-start-1">
+        <div class="overflow-hidden h-full" style="min-height: 180px;">
+          <img loading="lazy" src="img/palette.webp"
+               alt="Вся палитра гибкого кирпича — живой стенд с образцами"
+               class="w-full h-full object-cover object-center" style="max-height: 420px;" />
+        </div>
+        <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
+
+      </div>
+
       <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY.webp"
-               alt="Графит с оранжевым" class="w-full h-full object-cover" />
+               alt="Графит с оранжевым гибкий кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -298,13 +311,13 @@
 <!-- ====================================================
      FEATURES STRIP — почему гибкий
      ==================================================== -->
-<section class="py-16 bg-stone-900">
+<section class="py-16 bg-stone-900 border-t border-stone-800">
   <div class="max-w-6xl mx-auto px-4">
     <div class="grid md:grid-cols-2 gap-8 items-center">
 
       <div class="rounded-2xl overflow-hidden shadow-2xl">
         <img loading="lazy" src="img/ttw_RCPqoXWe1-6KE9aQtdlIol_cGLGLpXmCLW4IShbn5GxVxCGz0i8T2h7Y20jH9lIza9La0xNAeagEKYLTOBz6.webp"
-             alt="Демонстрация гибкости кирпича"
+             alt="Демонстрация гибкости кирпича Гибкий Кирпич"
              class="w-full h-64 md:h-80 object-cover" />
       </div>
 
@@ -408,7 +421,6 @@
       <!-- Карточка 1 — Своё производство -->
       <div class="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
         <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
-          <!-- Иконка: завод / производство -->
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M19 21V7l-7-4-7 4v14M9 21V12h6v9M3 21h18"/>
@@ -423,7 +435,6 @@
       <!-- Карточка 2 — Магазин в Саранске -->
       <div class="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
         <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
-          <!-- Иконка: магазин / здание -->
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
@@ -440,7 +451,6 @@
       <!-- Карточка 3 — Доставка по городу -->
       <div class="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
         <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
-          <!-- Иконка: машина / доставка -->
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/>
@@ -457,7 +467,6 @@
       <!-- Карточка 4 — 15 цветов в наличии -->
       <div class="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
         <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
-          <!-- Иконка: палитра -->
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10 1.1 0 2-.9 2-2v-.5c0-.55.45-1 1-1h1c2.76 0 5-2.24 5-5 0-5.52-4.04-10-9-10z"/>
@@ -597,7 +606,7 @@
 <footer class="bg-stone-800 border-t border-stone-700 py-8">
   <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
     <div>
-      <div class="font-heading font-bold text-amber-500 text-xl uppercase tracking-wide">КирпичДекор</div>
+      <div class="font-heading font-bold text-amber-500 text-xl uppercase tracking-wide">Гибкий Кирпич</div>
       <div class="text-stone-500 text-xs mt-0.5">Гибкий декоративный кирпич — Саранск</div>
     </div>
     <div class="text-stone-500 text-xs text-center sm:text-right">
@@ -605,7 +614,7 @@
       <div class="mt-0.5">
         <span>+7 (952) 073-05-02</span>
       </div>
-      <div class="mt-0.5">© 2026 КирпичДекор. Все права защищены.</div>
+      <div class="mt-0.5">© 2026 Гибкий Кирпич. Все права защищены.</div>
     </div>
   </div>
 </footer>
