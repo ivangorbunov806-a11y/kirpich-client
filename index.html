@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Гибкий Кирпич — Саранск</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script>
     tailwind.config = {
@@ -75,68 +76,92 @@
 </header>
 
 <!-- ====================================================
-     HERO
+     HERO — split-screen: фасад (снаружи) + интерьер (внутри)
      ==================================================== -->
 <section id="hero" class="relative min-h-screen overflow-hidden pt-14">
 
-  <!-- Desktop image -->
-  <img
-    src="img/hero-desktop.webp"
-    alt="Гибкий Кирпич — отделка фасада"
-    class="absolute inset-0 w-full h-full object-cover object-center hidden md:block"
-  />
-  <!-- Mobile image -->
-  <img
-    src="img/hero-mobile.webp"
-    alt="Гибкий Кирпич — отделка фасада"
-    class="absolute inset-0 w-full h-full object-cover object-center md:hidden"
-  />
+  <!-- Desktop: split-screen 50/50 -->
+  <div class="hidden md:flex absolute inset-0">
+    <div class="w-1/2 h-full relative">
+      <img
+        src="img/hero-desktop.webp"
+        alt="Гибкий Кирпич — отделка фасада снаружи"
+        class="absolute inset-0 w-full h-full object-cover object-center"
+      />
+    </div>
+    <div class="w-1/2 h-full relative">
+      <img
+        src="img/hero-interior.webp"
+        alt="Гибкий Кирпич — акцентная стена в интерьере спальни"
+        class="absolute inset-0 w-full h-full object-cover object-center"
+      />
+    </div>
+  </div>
 
-  <!-- Desktop overlay: затемнение слева -->
+  <!-- Mobile: vertical split, верх — фасад, низ — интерьер -->
+  <div class="md:hidden absolute inset-0 flex flex-col">
+    <div class="h-1/2 w-full relative">
+      <img
+        src="img/hero-mobile.webp"
+        alt="Гибкий Кирпич — отделка фасада снаружи"
+        class="absolute inset-0 w-full h-full object-cover object-center"
+      />
+    </div>
+    <div class="h-1/2 w-full relative">
+      <img
+        src="img/hero-interior.webp"
+        alt="Гибкий Кирпич — акцентная стена в интерьере спальни"
+        class="absolute inset-0 w-full h-full object-cover object-center"
+      />
+    </div>
+  </div>
+
+  <!-- Desktop overlay: общее затемнение для читаемости текста по центру -->
   <div class="absolute inset-0 hidden md:block"
-       style="background: linear-gradient(to right, rgba(28,25,23,0.88) 0%, rgba(28,25,23,0.65) 45%, rgba(28,25,23,0.10) 100%);">
+       style="background: linear-gradient(to bottom, rgba(28,25,23,0.55) 0%, rgba(28,25,23,0.45) 40%, rgba(28,25,23,0.80) 100%);">
   </div>
-  <!-- Mobile overlay: затемнение снизу -->
+  <!-- Mobile overlay: затемнение снизу под текст -->
   <div class="absolute inset-0 md:hidden"
-       style="background: linear-gradient(to top, rgba(28,25,23,0.92) 0%, rgba(28,25,23,0.55) 45%, rgba(28,25,23,0.05) 100%);">
+       style="background: linear-gradient(to top, rgba(28,25,23,0.94) 0%, rgba(28,25,23,0.62) 38%, rgba(28,25,23,0.15) 70%, rgba(28,25,23,0.35) 100%);">
   </div>
 
-  <!-- Desktop: текст слева, кнопки -->
-  <div class="relative z-10 hidden md:flex flex-col justify-center min-h-screen max-w-6xl mx-auto px-8 pb-0">
-    <div class="max-w-xl">
-      <h1 class="font-heading font-bold text-6xl xl:text-7xl uppercase leading-none mb-5 text-white">
-        Твой дом.<br/>Твой стиль.
-      </h1>
-      <p class="text-stone-300 text-xl leading-relaxed mb-8">
-        Гибкий кирпич — отделка фасада<br/>без грязи и лишних затрат
-      </p>
-      <div class="flex gap-3">
-        <a href="#catalog"
-           class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 font-bold text-base px-8 py-4 rounded-xl transition-colors shadow-lg shadow-amber-500/30">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
-          </svg>
-          Смотреть каталог
-        </a>
-        <a href="#contact"
-           class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white font-semibold text-base px-8 py-4 rounded-xl transition-colors backdrop-blur-sm">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-          </svg>
-          Контакты
-        </a>
-      </div>
+  <!-- Desktop: текст по центру внизу -->
+  <div class="relative z-10 hidden md:flex flex-col items-center justify-end min-h-screen max-w-5xl mx-auto px-8 pb-16 text-center">
+    <span class="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">Снаружи и внутри</span>
+    <h1 class="font-heading font-bold text-5xl xl:text-7xl uppercase leading-none mb-5 text-white">
+      Твой дом.<br/>Твой стиль.
+    </h1>
+    <p class="text-stone-200 text-xl leading-relaxed mb-8 max-w-2xl">
+      Гибкий кирпич — для фасада и для интерьера.<br/>
+      Один материал, любые поверхности, без грязи и лишних затрат
+    </p>
+    <div class="flex gap-3">
+      <a href="#catalog"
+         class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 font-bold text-base px-8 py-4 rounded-xl transition-colors shadow-lg shadow-amber-500/30">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+        </svg>
+        Смотреть каталог
+      </a>
+      <a href="#contact"
+         class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white font-semibold text-base px-8 py-4 rounded-xl transition-colors backdrop-blur-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+        Контакты
+      </a>
     </div>
   </div>
 
   <!-- Mobile: текст снизу, кнопки -->
   <div class="relative z-10 md:hidden flex flex-col justify-end min-h-screen px-5 pb-24">
+    <span class="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-2">Снаружи и внутри</span>
     <h1 class="font-heading font-bold text-5xl uppercase leading-none mb-3 text-white">
       Твой дом.<br/>Твой стиль.
     </h1>
     <p class="text-stone-300 text-lg leading-relaxed mb-6">
-      Гибкий кирпич — красивый фасад<br/>без лишних затрат
+      Гибкий кирпич для фасада<br/>и для интерьера — без лишних затрат
     </p>
     <div class="flex flex-col gap-3">
       <a href="#catalog"
@@ -173,23 +198,22 @@
       </p>
     </div>
 
-    <!-- Сетка: 8 образцов + карточка палитры (вертикальная, занимает 2 строки на lg) -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:grid-rows-[auto_auto]">
+    <!-- Ровная сетка 12 карточек: 2 / 3 / 4 колонки -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
 
-      <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
-        <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr-.webp"
-               alt="Терракотовый гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
-        </div>
-        <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
-        <div class="p-3">
-          <div class="font-semibold text-sm text-white">Терракотовый</div>
-          <div class="text-xs text-stone-400 mt-0.5">Классический красно-оранжевый</div>
-          <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
-        </div>
-      </div>
-
-      <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
+      <!-- 1. Янтарный -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4.webp"
                alt="Янтарный гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
@@ -201,46 +225,73 @@
           <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
         </div>
       </div>
+      </div>
 
-      <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
+      <!-- 2. Горчичный -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 50ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf.webp"
-               alt="Коричневый гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
+          <img loading="lazy" src="img/FBLth0idunxbVF5TiEKGsHaSjFRzTAj6dmz9O5ku1LYCC7JDreQ-03Pxkr4Rn7W0-tAeEq2xJQXLmCQ4_kPWiSGv.webp"
+               alt="Горчичный гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
-          <div class="font-semibold text-sm text-white">Коричневый</div>
-          <div class="text-xs text-stone-400 mt-0.5">Натуральный тёплый коричневый</div>
+          <div class="font-semibold text-sm text-white">Горчичный</div>
+          <div class="text-xs text-stone-400 mt-0.5">Яркий жёлто-золотистый акцент</div>
           <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
         </div>
       </div>
-
-      <!-- Карточка палитры — вертикальная, row-span-2 на lg (4 колонки) -->
-      <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer
-                  row-span-1 lg:row-span-2 lg:col-start-4 lg:row-start-1">
-        <div class="overflow-hidden h-full" style="min-height: 180px;">
-          <img loading="lazy" src="img/palette.webp"
-               alt="Вся палитра гибкого кирпича — живой стенд с образцами"
-               class="w-full h-full object-cover object-center" style="max-height: 420px;" />
-        </div>
-        <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
-
       </div>
 
-      <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
+      <!-- 3. Терракотовый -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 100ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY.webp"
-               alt="Графит с оранжевым гибкий кирпич" class="w-full h-full object-cover" />
+          <img loading="lazy" src="img/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr-.webp"
+               alt="Терракотовый гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
-          <div class="font-semibold text-sm text-white">Графит + Оранжевый</div>
-          <div class="text-xs text-stone-400 mt-0.5">Современный контрастный микс</div>
+          <div class="font-semibold text-sm text-white">Терракотовый</div>
+          <div class="text-xs text-stone-400 mt-0.5">Классический красно-оранжевый</div>
           <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
         </div>
       </div>
+      </div>
 
-      <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
+      <!-- 4. Оранжево-коричневый -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 150ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/iIHfCJwHW_bPhAQt_M0tR8umyPEeEGmqE5fnMJwVymArLF4C3ZtrTOhV0aZSQcnZr48xyCJd009ZmX_ROYer9-mA.webp"
                alt="Оранжево-коричневый гибкий кирпич" class="w-full h-full object-cover" />
@@ -252,8 +303,151 @@
           <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
         </div>
       </div>
+      </div>
 
-      <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
+      <!-- 5. Бордовый -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 200ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img loading="lazy" src="img/vPc41kK-tj5F3WAVGhF40XbcPYiQVRb5xOf9vsBroLHiY9uJfIk60od--JU68Op0B3DB3XWeH5OYWFbzuNbV1YQE.webp"
+               alt="Бордовый гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
+        </div>
+        <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
+        <div class="p-3">
+          <div class="font-semibold text-sm text-white">Бордовый</div>
+          <div class="text-xs text-stone-400 mt-0.5">Глубокий тёмно-красный с серым</div>
+          <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
+        </div>
+      </div>
+      </div>
+
+      <!-- 6. Тёмный микс -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 250ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img loading="lazy" src="img/5vQy1HVzBlhm05rpxvsIaQ1BWGyE9r7-SqA-Ev_Q-B3wSoVGhuEuFaMIL9U1H6UQ5JFVx4hOcOtWDDp7IYVpaagL.webp"
+               alt="Тёмный микс гибкий кирпич" class="w-full h-full object-cover" />
+        </div>
+        <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
+        <div class="p-3">
+          <div class="font-semibold text-sm text-white">Тёмный микс</div>
+          <div class="text-xs text-stone-400 mt-0.5">Коричневый, чёрный, оранжевый</div>
+          <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
+        </div>
+      </div>
+      </div>
+
+      <!-- 7. Венге -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 300ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img loading="lazy" src="img/HTkD4frBnvUVGHnLg_BNrozchfc25U0a-YZeF9wLq1oIobxIDG7s2vUyBfL_6XfW5z8XYkpbeWLVb_fGRsLxVFiY.webp"
+               alt="Венге гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
+        </div>
+        <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
+        <div class="p-3">
+          <div class="font-semibold text-sm text-white">Венге</div>
+          <div class="text-xs text-stone-400 mt-0.5">Тёмно-коричневый с серыми вставками</div>
+          <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
+        </div>
+      </div>
+      </div>
+
+      <!-- 8. Графит с оранжевым -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 350ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img loading="lazy" src="img/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY.webp"
+               alt="Графит с оранжевым гибкий кирпич" class="w-full h-full object-cover" />
+        </div>
+        <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
+        <div class="p-3">
+          <div class="font-semibold text-sm text-white">Графит + Оранжевый</div>
+          <div class="text-xs text-stone-400 mt-0.5">Современный контрастный микс</div>
+          <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
+        </div>
+      </div>
+      </div>
+
+      <!-- 9. Коричневый -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 400ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img loading="lazy" src="img/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf.webp"
+               alt="Коричневый гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
+        </div>
+        <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
+        <div class="p-3">
+          <div class="font-semibold text-sm text-white">Коричневый</div>
+          <div class="text-xs text-stone-400 mt-0.5">Натуральный тёплый коричневый</div>
+          <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
+        </div>
+      </div>
+      </div>
+
+      <!-- 10. Шоколадно-кремовый -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 450ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/gfNFydiQq9X5-tCioypB3rP3W8ULp2RmbJjdagC-Yg-JaBrF6o8a8n1zcCIVokuf8NdxV7m2F-6599TxdWwVlqAb.webp"
                alt="Шоколадно-кремовый гибкий кирпич" class="w-full h-full object-cover" />
@@ -265,8 +459,21 @@
           <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
         </div>
       </div>
+      </div>
 
-      <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
+      <!-- 11. Зелёный -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 500ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/UqgtlXXTFyL1IfyUih_K1hppEYz_7tkj2Pr0nl36F6QOEbqocOwgsNUuSFtpda7ZoZ7QOtZkBadhSZ16zWV3qhsp.webp"
                alt="Зелёный гибкий кирпич" class="w-full h-full object-cover" />
@@ -278,18 +485,32 @@
           <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
         </div>
       </div>
+      </div>
 
-      <div class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer">
+      <!-- 12. Вся палитра -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 550ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+           @mousemove="
+             const r = $el.getBoundingClientRect();
+             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
+             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
+           "
+           @mouseleave="rx = 0; ry = 0"
+           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+           class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/5vQy1HVzBlhm05rpxvsIaQ1BWGyE9r7-SqA-Ev_Q-B3wSoVGhuEuFaMIL9U1H6UQ5JFVx4hOcOtWDDp7IYVpaagL.webp"
-               alt="Тёмный микс гибкий кирпич" class="w-full h-full object-cover" />
+          <img loading="lazy" src="img/palette.webp"
+               alt="Вся палитра гибкого кирпича — живой стенд с образцами" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
-          <div class="font-semibold text-sm text-white">Тёмный микс</div>
-          <div class="text-xs text-stone-400 mt-0.5">Коричневый, чёрный, оранжевый</div>
+          <div class="font-semibold text-sm text-white">Вся палитра</div>
+          <div class="text-xs text-stone-400 mt-0.5">15+ оттенков на одном стенде</div>
           <div class="text-amber-500 font-bold text-sm mt-1">от 900 ₽/м²</div>
         </div>
+      </div>
       </div>
 
     </div>
@@ -369,34 +590,251 @@
 <section id="apply" class="py-20 bg-stone-800">
   <div class="max-w-6xl mx-auto px-4">
 
-    <div class="text-center mb-12">
+    <!-- ЧАСТЬ 1 — Где используют -->
+    <div class="text-center mb-10">
       <span class="text-amber-500 text-sm font-semibold uppercase tracking-widest">Примеры применения</span>
       <h2 class="font-heading font-bold text-4xl sm:text-5xl mt-2 uppercase">Где используют</h2>
+      <p class="text-stone-400 mt-4 max-w-2xl mx-auto">Гибкий кирпич одинаково хорошо работает на фасаде под дождём и морозом и внутри дома — на стенах, кухне и у камина.</p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 items-stretch">
 
-      <div class="apply-card rounded-2xl overflow-hidden">
-        <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/gemini-2026-06-06-008.webp" alt="Применение гибкого кирпича" class="w-full h-full object-cover" />
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700">
+        <div x-data="{ rx: 0, ry: 0 }"
+             @mousemove="
+               const r = $el.getBoundingClientRect();
+               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
+               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
+             "
+             @mouseleave="rx = 0; ry = 0"
+             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+             class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img loading="lazy" src="img/gemini-2026-06-07-001.webp" alt="Фасад дома из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-amber-400 backdrop-blur-sm">Снаружи</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="font-heading font-bold text-base sm:text-xl text-white uppercase leading-tight">Фасады домов</h3>
+            <p class="text-stone-400 text-xs sm:text-sm mt-1.5 leading-snug">Лёгкий вес не нагружает фундамент — подходит даже для ветхих стен</p>
+          </div>
         </div>
       </div>
 
-      <div class="apply-card rounded-2xl overflow-hidden">
-        <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/Gemini_Generated_Image_yyhqimyyhqimyyhq.webp" alt="Применение гибкого кирпича" class="w-full h-full object-cover" />
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 75ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+             @mousemove="
+               const r = $el.getBoundingClientRect();
+               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
+               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
+             "
+             @mouseleave="rx = 0; ry = 0"
+             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+             class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img loading="lazy" src="img/apply-fence.webp" alt="Забор и входная группа из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-amber-400 backdrop-blur-sm">Снаружи</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="font-heading font-bold text-base sm:text-xl text-white uppercase leading-tight">Заборы и входные группы</h3>
+            <p class="text-stone-400 text-xs sm:text-sm mt-1.5 leading-snug">Не боится дождя и мороза — водопоглощение всего ~1,4%</p>
+          </div>
         </div>
       </div>
 
-      <div class="apply-card rounded-2xl overflow-hidden">
-        <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/gemini-2026-06-06-010.webp" alt="Применение гибкого кирпича" class="w-full h-full object-cover" />
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 150ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+             @mousemove="
+               const r = $el.getBoundingClientRect();
+               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
+               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
+             "
+             @mouseleave="rx = 0; ry = 0"
+             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+             class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img loading="lazy" src="img/apply-arch.webp" alt="Арки и колонны, отделанные гибким кирпичом" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-amber-400 backdrop-blur-sm">Снаружи</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="font-heading font-bold text-base sm:text-xl text-white uppercase leading-tight">Арки и колонны</h3>
+            <p class="text-stone-400 text-xs sm:text-sm mt-1.5 leading-snug">Гибкость до 180° — ложится на любые изгибы и углы</p>
+          </div>
         </div>
       </div>
 
-      <div class="apply-card rounded-2xl overflow-hidden">
-        <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/ideas-card.webp" alt="Применение гибкого кирпича" class="w-full h-full object-cover" />
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 225ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+             @mousemove="
+               const r = $el.getBoundingClientRect();
+               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
+               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
+             "
+             @mouseleave="rx = 0; ry = 0"
+             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+             class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img loading="lazy" src="img/apply-living.webp" alt="Акцентная стена в интерьере из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-stone-200 backdrop-blur-sm">Внутри</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="font-heading font-bold text-base sm:text-xl text-white uppercase leading-tight">Акцентные стены</h3>
+            <p class="text-stone-400 text-xs sm:text-sm mt-1.5 leading-snug">Гостиная, спальня, прихожая — натуральный вид кирпичной кладки</p>
+          </div>
+        </div>
+      </div>
+
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 300ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+             @mousemove="
+               const r = $el.getBoundingClientRect();
+               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
+               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
+             "
+             @mouseleave="rx = 0; ry = 0"
+             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+             class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img loading="lazy" src="img/apply-kitchen.webp" alt="Кухонный фартук из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-stone-200 backdrop-blur-sm">Внутри</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="font-heading font-bold text-base sm:text-xl text-white uppercase leading-tight">Кухонный фартук</h3>
+            <p class="text-stone-400 text-xs sm:text-sm mt-1.5 leading-snug">Влагостойкий и моется — выдерживает брызги и пар</p>
+          </div>
+        </div>
+      </div>
+
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 375ms">
+        <div x-data="{ rx: 0, ry: 0 }"
+             @mousemove="
+               const r = $el.getBoundingClientRect();
+               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
+               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
+             "
+             @mouseleave="rx = 0; ry = 0"
+             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+             class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img loading="lazy" src="img/apply-fireplace.webp" alt="Камин, облицованный гибким кирпичом" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-stone-200 backdrop-blur-sm">Внутри</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="font-heading font-bold text-base sm:text-xl text-white uppercase leading-tight">Камины и печи</h3>
+            <p class="text-stone-400 text-xs sm:text-sm mt-1.5 leading-snug">Термостойкий, слабогорючий (класс Г1) — безопасен у огня</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ЧАСТЬ 2 — Почему гибкий кирпич -->
+    <div class="text-center mb-10 mt-16 sm:mt-20">
+      <span class="text-amber-500 text-sm font-semibold uppercase tracking-widest">Свойства материала</span>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mt-2 uppercase">Почему гибкий кирпич</h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700">
+        <div class="h-full bg-stone-900 rounded-2xl p-5 sm:p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2.5C12 2.5 5 10 5 14.5a7 7 0 0014 0C19 10 12 2.5 12 2.5z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14.5a3 3 0 003 3"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg sm:text-xl mb-2 uppercase">Влагостойкий</h3>
+          <p class="text-stone-400 text-sm leading-relaxed">Водопоглощение всего ~1,4% — не боится ливней, кухни и балкона</p>
+        </div>
+      </div>
+
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 75ms">
+        <div class="h-full bg-stone-900 rounded-2xl p-5 sm:p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 13.5V5a2 2 0 014 0v8.5a4 4 0 11-4 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 16.5h.01"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg sm:text-xl mb-2 uppercase">Термо- и морозостойкий</h3>
+          <p class="text-stone-400 text-sm leading-relaxed">Выдерживает от −55 до +135 °C и более 150 циклов заморозки</p>
+        </div>
+      </div>
+
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 150ms">
+        <div class="h-full bg-stone-900 rounded-2xl p-5 sm:p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 20C6 20 4 16 4 11c0-2 .5-4 .5-4s3.5.5 6 3c2 2 2.5 5 2.5 5"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 5s.5 3-1 6c-1.2 2.4-3.5 3.5-5.5 4"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 20c0-4 3-8 8-11"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg sm:text-xl mb-2 uppercase">Натуральный состав</h3>
+          <p class="text-stone-400 text-sm leading-relaxed">Глина, кварцевый песок и минеральные пигменты — безопасен внутри помещений</p>
+        </div>
+      </div>
+
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 225ms">
+        <div class="h-full bg-stone-900 rounded-2xl p-5 sm:p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6c-5 0-8 3-10 7-1.5 3-2 6-2 6s3-.5 6-2c4-2 7-5 7-10 0-1 0-1-1-1z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 19c2-3 4-5 8-7"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg sm:text-xl mb-2 uppercase">Лёгкий</h3>
+          <p class="text-stone-400 text-sm leading-relaxed">~6 кг/м², почти в 10 раз легче кирпича — не нагружает фундамент</p>
+        </div>
+      </div>
+
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 300ms">
+        <div class="h-full bg-stone-900 rounded-2xl p-5 sm:p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 18a10 10 0 0110-10h4"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5l4 3-4 3"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg sm:text-xl mb-2 uppercase">Гибкий до 180°</h3>
+          <p class="text-stone-400 text-sm leading-relaxed">Ложится на арки, колонны, радиусные и угловые поверхности</p>
+        </div>
+      </div>
+
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 375ms">
+        <div class="h-full bg-stone-900 rounded-2xl p-5 sm:p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11.5l2 2 4-4"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg sm:text-xl mb-2 uppercase">Служит 35+ лет</h3>
+          <p class="text-stone-400 text-sm leading-relaxed">Не выгорает на солнце (УФ-защита класс 8) и не трескается при усадке дома</p>
         </div>
       </div>
 
@@ -416,9 +854,35 @@
       <h2 class="font-heading font-bold text-4xl sm:text-5xl mt-2 uppercase">Почему выбирают нас</h2>
     </div>
 
+    <!-- Цифры в цифрах: анимированные счётчики при скролле -->
+    <div class="grid grid-cols-3 gap-3 sm:gap-6 mb-12 max-w-3xl mx-auto text-center">
+
+      <div x-data="{ n: 0 }" x-intersect="let t = setInterval(() => { n += 1; if (n >= 15) { n = 15; clearInterval(t) } }, 60)"
+           class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700">
+        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500"><span x-text="n"></span></div>
+        <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">цветов + микс в наличии</div>
+      </div>
+
+      <div x-data="{ n: 0 }" x-intersect="let t = setInterval(() => { n += 30; if (n >= 900) { n = 900; clearInterval(t) } }, 30)"
+           class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700">
+        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500">от <span x-text="n"></span></div>
+        <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">₽/м² стартовая цена</div>
+      </div>
+
+      <div x-data="{ n: 0 }" x-intersect="let t = setInterval(() => { n += 1; if (n >= 10) { n = 10; clearInterval(t) } }, 90)"
+           class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700">
+        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500"><span x-text="n"></span></div>
+        <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">минут на 2 м² монтажа</div>
+      </div>
+
+    </div>
+
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
       <!-- Карточка 1 — Своё производство -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700">
       <div class="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
         <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -430,9 +894,14 @@
         <p class="text-stone-400 text-sm leading-relaxed">
           Производим гибкий кирпич сами — контролируем качество на каждом этапе. Никаких посредников.
         </p>
+
+      </div>
       </div>
 
       <!-- Карточка 2 — Магазин в Саранске -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 75ms">
       <div class="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
         <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -446,9 +915,14 @@
         <p class="text-stone-400 text-sm leading-relaxed">
           Приходите посмотреть и потрогать живые образцы. г. Саранск, ул. Рабочая, 185В.
         </p>
+
+      </div>
       </div>
 
       <!-- Карточка 3 — Доставка по городу -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 150ms">
       <div class="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
         <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -462,9 +936,14 @@
         <p class="text-stone-400 text-sm leading-relaxed">
           Привезём прямо к вашему объекту. Быстро и без лишних хлопот.
         </p>
+
+      </div>
       </div>
 
       <!-- Карточка 4 — 15 цветов в наличии -->
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 225ms">
       <div class="bg-stone-800 rounded-2xl p-6 border border-stone-700 hover:border-amber-500/50 transition-colors group">
         <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -479,6 +958,8 @@
         <p class="text-stone-400 text-sm leading-relaxed">
           Всё в наличии на складе. Есть варианты под заказ — подберём нужный оттенок.
         </p>
+
+      </div>
       </div>
 
     </div>
@@ -500,6 +981,9 @@
 
     <div class="grid sm:grid-cols-3 gap-6">
 
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700">
       <div class="text-center">
         <div class="w-16 h-16 rounded-2xl bg-amber-500 text-stone-900 font-heading font-bold text-3xl flex items-center justify-center mx-auto mb-4">1</div>
         <h3 class="font-heading font-bold text-xl uppercase mb-2">Позвоните нам</h3>
@@ -507,7 +991,11 @@
           Скажите какую поверхность хотите облицевать и примерный метраж. Поможем выбрать цвет.
         </p>
       </div>
+      </div>
 
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 100ms">
       <div class="text-center relative">
         <!-- Connector line desktop -->
         <div class="hidden sm:block absolute top-8 left-0 right-0 h-px bg-stone-700 -z-10"></div>
@@ -517,13 +1005,18 @@
           Рассчитаем нужное количество м², подскажем расход клея и нюансы монтажа.
         </p>
       </div>
+      </div>
 
+      <div x-data="{ shown: false }" x-intersect="shown = true"
+           :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+           class="transition-all duration-700" style="transition-delay: 200ms">
       <div class="text-center">
         <div class="w-16 h-16 rounded-2xl bg-amber-500 text-stone-900 font-heading font-bold text-3xl flex items-center justify-center mx-auto mb-4">3</div>
         <h3 class="font-heading font-bold text-xl uppercase mb-2">Заберите товар</h3>
         <p class="text-stone-400 text-sm leading-relaxed">
           Самовывоз из г. Саранск, ул. Рабочая, 185В. Монтаж 2 м² за 10 минут — справитесь сами.
         </p>
+      </div>
       </div>
 
     </div>
