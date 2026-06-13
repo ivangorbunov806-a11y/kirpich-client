@@ -96,9 +96,9 @@
      ==================================================== -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-stone-900/90 backdrop-blur-sm border-b border-stone-800">
   <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
-    <div class="flex flex-col leading-tight">
+    <div class="flex items-center gap-2 md:flex-col md:items-start md:gap-0 leading-tight">
       <span class="font-heading font-bold text-amber-500 text-xl tracking-wide uppercase">Гибкий Кирпич</span>
-      <span class="text-stone-400 text-[10px] sm:text-xs">г. Саранск, ул. Рабочая, 185В</span>
+      <span class="text-xs text-stone-300 md:text-[10px] md:text-stone-400 md:sm:text-xs">г. Саранск, ул. Рабочая, 185В</span>
     </div>
     <nav class="hidden md:flex items-center gap-6 text-sm text-stone-300">
       <a href="#catalog"   class="hover:text-amber-400 transition-colors">Каталог</a>
@@ -921,10 +921,13 @@
         <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">₽/м² стартовая цена</div>
       </div>
 
-      <div x-data="{ n: 0 }" x-intersect="let t = setInterval(() => { n += 1; if (n >= 25) { n = 25; clearInterval(t) } }, 36)"
-           class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700">
-        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500"><span x-text="n"></span>+</div>
-        <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">лет служит материал</div>
+      <div class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700 flex flex-col items-center justify-center text-center">
+        <svg class="w-8 h-8 sm:w-12 sm:h-12 text-amber-500 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9a3 3 0 100 6 3 3 0 000-6z"/>
+        </svg>
+        <div class="font-heading font-bold text-sm sm:text-2xl text-amber-500 uppercase leading-tight">Приходите и потрогайте</div>
+        <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">Живые образцы в шоуруме</div>
       </div>
 
     </div>
