@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Гибкий Кирпич — Саранск</title>
+  <title>Гибкий кирпич в Саранске — фасад и интерьер | Гибкий Кирпич</title>
+  <meta name="description" content="Гибкий кирпич в Саранске — гибкая плитка для фасада и интерьера. 15+ цветов, от 900 ₽/м². Своё производство, магазин на ул. Рабочая, 185В.">
+  <link rel="canonical" href="https://saranskdekor.ru/">
+  <meta name="theme-color" content="#f59e0b">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -49,6 +53,41 @@
     @media (max-width: 767px) { .sticky-cta { display: flex; } }
     @media (min-width: 768px) { .sticky-cta { display: none; } }
   </style>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Гибкий Кирпич">
+  <meta property="og:title" content="Гибкий кирпич в Саранске — фасад и интерьер | Гибкий Кирпич">
+  <meta property="og:description" content="Гибкий кирпич в Саранске — гибкая плитка для фасада и интерьера. 15+ цветов, от 900 ₽/м². Своё производство, магазин на ул. Рабочая, 185В.">
+  <meta property="og:url" content="https://saranskdekor.ru/">
+  <meta property="og:image" content="https://saranskdekor.ru/img/hero-desktop.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Гибкий кирпич в Саранске — фасад и интерьер | Гибкий Кирпич">
+  <meta name="twitter:description" content="Гибкий кирпич в Саранске — гибкая плитка для фасада и интерьера. 15+ цветов, от 900 ₽/м². Своё производство, магазин на ул. Рабочая, 185В.">
+  <meta name="twitter:image" content="https://saranskdekor.ru/img/hero-desktop.webp">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Гибкий Кирпич",
+    "image": "https://saranskdekor.ru/img/hero-desktop.webp",
+    "url": "https://saranskdekor.ru/",
+    "telephone": "+79520730502",
+    "priceRange": "от 900 ₽/м²",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Рабочая, 185В",
+      "addressLocality": "Саранск",
+      "addressRegion": "Республика Мордовия",
+      "addressCountry": "RU"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }
+  }
+  </script>
 </head>
 <body class="bg-stone-900 font-sans text-white antialiased">
 
@@ -56,8 +95,11 @@
      HEADER
      ==================================================== -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-stone-900/90 backdrop-blur-sm border-b border-stone-800">
-  <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-    <span class="font-heading font-bold text-amber-500 text-xl tracking-wide uppercase">Гибкий Кирпич</span>
+  <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
+    <div class="flex flex-col leading-tight">
+      <span class="font-heading font-bold text-amber-500 text-xl tracking-wide uppercase">Гибкий Кирпич</span>
+      <span class="text-stone-400 text-[10px] sm:text-xs">г. Саранск, ул. Рабочая, 185В</span>
+    </div>
     <nav class="hidden md:flex items-center gap-6 text-sm text-stone-300">
       <a href="#catalog"   class="hover:text-amber-400 transition-colors">Каталог</a>
       <a href="#apply"     class="hover:text-amber-400 transition-colors">Применение</a>
@@ -78,7 +120,7 @@
 <!-- ====================================================
      HERO — split-screen: фасад (снаружи) + интерьер (внутри)
      ==================================================== -->
-<section id="hero" class="relative min-h-screen overflow-hidden pt-14">
+<section id="hero" class="relative min-h-screen overflow-hidden pt-16">
 
   <!-- Desktop: split-screen 50/50 -->
   <div class="hidden md:flex absolute inset-0">
@@ -202,7 +244,7 @@
 
     <div class="text-center mb-12">
       <span class="text-amber-500 text-sm font-semibold uppercase tracking-widest">Наш ассортимент</span>
-      <h2 class="font-heading font-bold text-4xl sm:text-5xl mt-2 mb-3 uppercase">Каталог цветов</h2>
+      <h2 class="font-heading font-bold text-4xl sm:text-5xl mt-2 mb-3 uppercase">Каталог цветов гибкого кирпича</h2>
       <p class="text-stone-400 max-w-xl mx-auto">
         15 цветов + микс в наличии. Варианты под заказ. Каждый образец — реальное фото с нашего стенда.
       </p>
@@ -226,7 +268,7 @@
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4.webp"
-               alt="Янтарный гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
+               alt="Янтарный гибкий кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -252,7 +294,7 @@
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/FBLth0idunxbVF5TiEKGsHaSjFRzTAj6dmz9O5ku1LYCC7JDreQ-03Pxkr4Rn7W0-tAeEq2xJQXLmCQ4_kPWiSGv.webp"
-               alt="Горчичный гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
+               alt="Горчичный гибкий кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -278,7 +320,7 @@
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr-.webp"
-               alt="Терракотовый гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
+               alt="Терракотовый гибкий кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -330,7 +372,7 @@
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/vPc41kK-tj5F3WAVGhF40XbcPYiQVRb5xOf9vsBroLHiY9uJfIk60od--JU68Op0B3DB3XWeH5OYWFbzuNbV1YQE.webp"
-               alt="Бордовый гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
+               alt="Бордовый гибкий кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -382,7 +424,7 @@
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/HTkD4frBnvUVGHnLg_BNrozchfc25U0a-YZeF9wLq1oIobxIDG7s2vUyBfL_6XfW5z8XYkpbeWLVb_fGRsLxVFiY.webp"
-               alt="Венге гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
+               alt="Венге гибкий кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -434,7 +476,7 @@
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf.webp"
-               alt="Коричневый гибкий кирпич Гибкий Кирпич" class="w-full h-full object-cover" />
+               alt="Коричневый гибкий кирпич" class="w-full h-full object-cover" />
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -879,10 +921,10 @@
         <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">₽/м² стартовая цена</div>
       </div>
 
-      <div x-data="{ n: 0 }" x-intersect="let t = setInterval(() => { n += 1; if (n >= 10) { n = 10; clearInterval(t) } }, 90)"
+      <div x-data="{ n: 0 }" x-intersect="let t = setInterval(() => { n += 1; if (n >= 25) { n = 25; clearInterval(t) } }, 36)"
            class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700">
-        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500"><span x-text="n"></span></div>
-        <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">минут на 2 м² монтажа</div>
+        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500"><span x-text="n"></span>+</div>
+        <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">лет служит материал</div>
       </div>
 
     </div>
