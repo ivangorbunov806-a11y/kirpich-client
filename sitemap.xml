@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://saranskdekor.ru/</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://saranskdekor.ru/img/hero-desktop.webp</image:loc>
+      <image:title>Гибкий кирпич — отделка фасада снаружи</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://saranskdekor.ru/img/palette.webp</image:loc>
+      <image:title>Палитра цветов гибкого кирпича</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://saranskdekor.ru/img/apply-arch.webp</image:loc>
+      <image:title>Арки и колонны, отделанные гибким кирпичом</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://saranskdekor.ru/img/apply-fence.webp</image:loc>
+      <image:title>Забор и входная группа из гибкого кирпича</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://saranskdekor.ru/img/apply-fireplace.webp</image:loc>
+      <image:title>Камин, облицованный гибким кирпичом</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://saranskdekor.ru/img/apply-kitchen.webp</image:loc>
+      <image:title>Кухонный фартук из гибкого кирпича</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://saranskdekor.ru/img/apply-living.webp</image:loc>
+      <image:title>Акцентная стена в интерьере из гибкого кирпича</image:title>
+    </image:image>
   </url>
 </urlset>
