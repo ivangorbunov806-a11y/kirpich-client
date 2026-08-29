@@ -10,34 +10,12 @@
   <link rel="canonical" href="https://saranskdekor.ru/">
   <meta name="theme-color" content="#f59e0b">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            amber: {
-              50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
-              400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
-              800: '#92400e', 900: '#78350f',
-            },
-            stone: {
-              900: '#1c1917', 800: '#292524', 700: '#44403c',
-              600: '#57534e', 300: '#d6d3d1', 100: '#f5f5f4',
-            }
-          },
-          fontFamily: {
-            heading: ['Oswald', 'system-ui', 'sans-serif'],
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/ui.css">
+  <script defer src="js/alpine-intersect.min.js"></script>
+  <script defer src="js/alpine.min.js"></script>
+  <script defer src="js/obrazec.js"></script>
   <style>
     html { scroll-behavior: smooth; scroll-padding-top: 56px; }
     .hero-overlay {
@@ -103,6 +81,7 @@
       <span class="text-xs text-stone-300 md:text-[10px] md:text-stone-400 md:sm:text-xs">г. Саранск, ул. Рабочая, 185В</span>
     </div>
     <nav class="hidden md:flex items-center gap-6 text-sm text-stone-300">
+      <a href="#plenka"    class="hover:text-amber-400 transition-colors">Плёнка</a>
       <a href="#catalog"   class="hover:text-amber-400 transition-colors">Каталог</a>
       <a href="#apply"     class="hover:text-amber-400 transition-colors">Применение</a>
       <a href="#benefits"  class="hover:text-amber-400 transition-colors">Преимущества</a>
@@ -238,9 +217,60 @@
           Позвонить
         </a>
       </div>
+      <p class="text-stone-300 text-[11px] leading-snug mt-3">
+        Фасады и интерьеры — визуализации на фактуре нашего материала. Каталог цветов — реальные фото стенда.
+      </p>
     </div>
   </div>
 
+</section>
+
+
+<!-- ====================================================
+     ПЛЁНКА — доказательство главной фишки.
+     Раньше страница о ней молчала, хотя это единственное, чего нет у конкурентов,
+     и на неё есть живой спрос («гибкий кирпич с плёнкой» — 664+385 показов/мес).
+     Кадр реальный, снят в шоуруме: рендер здесь был бы бессмысленным — доказывать
+     нечем, если доказательство нарисовано.
+     ==================================================== -->
+<section id="plenka" class="bg-stone-900 py-16 sm:py-24">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <span class="text-amber-500 text-sm font-semibold uppercase tracking-widest">Наша особенность</span>
+      <h2 class="font-heading font-bold text-4xl sm:text-5xl mt-2 text-white">Стену не надо отмывать</h2>
+      <p class="text-stone-300 mt-3 max-w-2xl mx-auto">
+        На лицевой стороне каждой плитки — защитная плёнка. Шов промазывается прямо по ней,
+        а когда клей схватился, плёнка снимается вместе с остатками раствора.
+      </p>
+    </div>
+
+    <figure class="plenka-shot relative rounded-2xl overflow-hidden border border-stone-800">
+      <img src="img/plenka-real.webp" width="1400" height="613" loading="lazy" decoding="async"
+           alt="Защитная плёнка снимается с плитки, под ней чистая поверхность"
+           class="w-full h-auto" />
+      <figcaption class="absolute bottom-3 left-3 text-[11px] text-stone-200 bg-stone-950/70 px-2.5 py-1 rounded">
+        Реальное фото, шоурум на Рабочей
+      </figcaption>
+    </figure>
+
+    <ol class="grid sm:grid-cols-3 gap-4 mt-8">
+      <li class="bg-stone-800/60 border border-stone-700 rounded-xl p-5">
+        <span class="text-amber-500 font-heading font-bold text-2xl">1</span>
+        <h3 class="font-heading font-bold text-lg text-white mt-1">Клеите с плёнкой</h3>
+        <p class="text-stone-300 text-sm mt-1.5">Гребёнка 4×4 мм, снизу вверх. Плёнка остаётся на лицевой стороне.</p>
+      </li>
+      <li class="bg-stone-800/60 border border-stone-700 rounded-xl p-5">
+        <span class="text-amber-500 font-heading font-bold text-2xl">2</span>
+        <h3 class="font-heading font-bold text-lg text-white mt-1">Промазываете шов по плёнке</h3>
+        <p class="text-stone-300 text-sm mt-1.5">Через 20–30 минут, когда клей как влажный песок. Отдельная затирка не нужна.</p>
+      </li>
+      <li class="bg-stone-800/60 border border-stone-700 rounded-xl p-5">
+        <span class="text-amber-500 font-heading font-bold text-2xl">3</span>
+        <h3 class="font-heading font-bold text-lg text-white mt-1">Снимаете плёнку</h3>
+        <p class="text-stone-300 text-sm mt-1.5">Поверхность под ней чистая — оттирать кирпич от раствора не приходится.</p>
+      </li>
+    </ol>
+  </div>
 </section>
 
 <!-- ====================================================
@@ -264,14 +294,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4.webp"
@@ -290,14 +313,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 50ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/FBLth0idunxbVF5TiEKGsHaSjFRzTAj6dmz9O5ku1LYCC7JDreQ-03Pxkr4Rn7W0-tAeEq2xJQXLmCQ4_kPWiSGv.webp"
@@ -316,14 +332,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 100ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr-.webp"
@@ -342,14 +351,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 150ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/iIHfCJwHW_bPhAQt_M0tR8umyPEeEGmqE5fnMJwVymArLF4C3ZtrTOhV0aZSQcnZr48xyCJd009ZmX_ROYer9-mA.webp"
@@ -368,14 +370,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 200ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/vPc41kK-tj5F3WAVGhF40XbcPYiQVRb5xOf9vsBroLHiY9uJfIk60od--JU68Op0B3DB3XWeH5OYWFbzuNbV1YQE.webp"
@@ -394,14 +389,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 250ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/5vQy1HVzBlhm05rpxvsIaQ1BWGyE9r7-SqA-Ev_Q-B3wSoVGhuEuFaMIL9U1H6UQ5JFVx4hOcOtWDDp7IYVpaagL.webp"
@@ -420,14 +408,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 300ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/HTkD4frBnvUVGHnLg_BNrozchfc25U0a-YZeF9wLq1oIobxIDG7s2vUyBfL_6XfW5z8XYkpbeWLVb_fGRsLxVFiY.webp"
@@ -446,14 +427,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 350ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY.webp"
@@ -472,14 +446,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 400ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf.webp"
@@ -498,14 +465,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 450ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/gfNFydiQq9X5-tCioypB3rP3W8ULp2RmbJjdagC-Yg-JaBrF6o8a8n1zcCIVokuf8NdxV7m2F-6599TxdWwVlqAb.webp"
@@ -524,14 +484,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 500ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/UqgtlXXTFyL1IfyUih_K1hppEYz_7tkj2Pr0nl36F6QOEbqocOwgsNUuSFtpda7ZoZ7QOtZkBadhSZ16zWV3qhsp.webp"
@@ -550,14 +503,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 550ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-           @mousemove="
-             const r = $el.getBoundingClientRect();
-             ry = (($event.clientX - r.left) / r.width - 0.5) * 8;
-             rx = (($event.clientY - r.top) / r.height - 0.5) * -8;
-           "
-           @mouseleave="rx = 0; ry = 0"
-           :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-xl shadow-amber-950/40 hover:shadow-2xl hover:shadow-amber-900/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
           <img loading="lazy" src="img/palette.webp"
@@ -661,14 +607,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700">
-        <div x-data="{ rx: 0, ry: 0 }"
-             @mousemove="
-               const r = $el.getBoundingClientRect();
-               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
-               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
-             "
-             @mouseleave="rx = 0; ry = 0"
-             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
           <div class="relative aspect-[4/3] overflow-hidden">
             <img loading="lazy" src="img/gemini-2026-06-07-001.webp" alt="Фасад дома из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -685,14 +624,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 75ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-             @mousemove="
-               const r = $el.getBoundingClientRect();
-               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
-               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
-             "
-             @mouseleave="rx = 0; ry = 0"
-             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
           <div class="relative aspect-[4/3] overflow-hidden">
             <img loading="lazy" src="img/apply-fence.webp" alt="Забор и входная группа из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -709,14 +641,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 150ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-             @mousemove="
-               const r = $el.getBoundingClientRect();
-               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
-               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
-             "
-             @mouseleave="rx = 0; ry = 0"
-             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
           <div class="relative aspect-[4/3] overflow-hidden">
             <img loading="lazy" src="img/apply-arch.webp" alt="Арки и колонны, отделанные гибким кирпичом" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -733,14 +658,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 225ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-             @mousemove="
-               const r = $el.getBoundingClientRect();
-               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
-               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
-             "
-             @mouseleave="rx = 0; ry = 0"
-             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
           <div class="relative aspect-[4/3] overflow-hidden">
             <img loading="lazy" src="img/apply-living.webp" alt="Акцентная стена в интерьере из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -757,14 +675,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 300ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-             @mousemove="
-               const r = $el.getBoundingClientRect();
-               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
-               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
-             "
-             @mouseleave="rx = 0; ry = 0"
-             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
           <div class="relative aspect-[4/3] overflow-hidden">
             <img loading="lazy" src="img/apply-kitchen.webp" alt="Кухонный фартук из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -781,14 +692,7 @@
       <div x-data="{ shown: false }" x-intersect="shown = true"
            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
            class="transition-all duration-700" style="transition-delay: 375ms">
-        <div x-data="{ rx: 0, ry: 0 }"
-             @mousemove="
-               const r = $el.getBoundingClientRect();
-               ry = (($event.clientX - r.left) / r.width - 0.5) * 6;
-               rx = (($event.clientY - r.top) / r.height - 0.5) * -6;
-             "
-             @mouseleave="rx = 0; ry = 0"
-             :style="`transform: perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`"
+        <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-xl shadow-amber-950/30 transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-900/40">
           <div class="relative aspect-[4/3] overflow-hidden">
             <img loading="lazy" src="img/apply-fireplace.webp" alt="Камин, облицованный гибким кирпичом" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />

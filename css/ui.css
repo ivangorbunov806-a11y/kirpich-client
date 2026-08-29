@@ -1,0 +1,42 @@
+/* Собственные стили поверх собранного Tailwind.
+   Отдельный файл, потому что css/site.css генерируется сборкой и правки в нём затрутся. */
+
+/* --- Просмотр образца цвета крупно (js/obrazec.js) ------------------------- */
+.obrazec{
+  position:fixed; inset:0; z-index:100;
+  display:flex; align-items:center; justify-content:center;
+  padding:24px;
+  background:rgba(12,10,9,.92);
+  animation:obrazec-in .18s ease-out;
+}
+.obrazec[hidden]{display:none}
+
+.obrazec__fig{margin:0; max-width:min(1100px,92vw); max-height:88vh; display:flex; flex-direction:column}
+.obrazec__img{
+  max-width:100%; max-height:80vh; object-fit:contain;
+  border-radius:12px; background:#1c1917;
+}
+.obrazec__cap{
+  color:#d6d3d1; font-size:13px; margin-top:10px; text-align:center;
+}
+.obrazec__close{
+  position:absolute; top:16px; right:16px;
+  width:44px; height:44px;            /* 44 px — минимальная площадь нажатия на телефоне */
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(28,25,23,.9); color:#fafaf9;
+  border:1px solid #44403c; border-radius:10px;
+  font-size:18px; line-height:1; cursor:pointer;
+}
+.obrazec__close:hover{background:#292524}
+.obrazec__close:focus-visible{outline:3px solid #f59e0b; outline-offset:2px}
+
+/* Курсор-подсказка: карточка каталога кликабельна */
+#catalog figure, #catalog article{cursor:zoom-in}
+
+@keyframes obrazec-in{from{opacity:0} to{opacity:1}}
+
+/* Уважаем системную настройку «меньше движения»: окно появляется сразу, без затухания. */
+@media (prefers-reduced-motion:reduce){
+  .obrazec{animation:none}
+  *{transition-duration:.01ms !important; animation-duration:.01ms !important}
+}
