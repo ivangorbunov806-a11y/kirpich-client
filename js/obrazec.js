@@ -80,3 +80,46 @@
     open(img, h ? h.textContent.trim() : '', price ? price[0] : '');
   });
 })();
+
+/*
+ * Ролик по клику. Файл весит 2,3 МБ — грузить его всем ради тех, кто досмотрит,
+ * нельзя. До нажатия в разметке лежит только картинка-постер на 27 КБ; <video>
+ * создаётся в момент клика, поэтому браузер не начинает качать заранее.
+ * Без скрипта работает <noscript>-ссылка прямо на файл.
+ */
+(function () {
+  'use strict';
+  var knopka = document.querySelector('.rolik-play');
+  if (!knopka) return;
+
+  knopka.addEventListener('click', function () {
+    var v = document.createElement('video');
+    v.src = knopka.getAttribute('data-src');
+    v.controls = true;
+    v.autoplay = true;
+    v.playsInline = true;            // иначе iOS открывает своё полноэкранное окно
+    v.className = 'rolik-video';
+    v.setAttribute('aria-label', 'Ролик про гибкий кирпич');
+    knopka.parentNode.replaceChild(v, knopka);
+    v.focus();
+  });
+})();
+
+/*
+ * Луп-доказательство играет ТОЛЬКО пока он на экране.
+ * Причина не в красоте: с постоянным autoplay страница никогда не «затихает» —
+ * браузер держит поток, на телефоне это лишний трафик, а инструменты проверки
+ * зависают на ожидании тишины в сети. Ушёл из кадра — пауза.
+ */
+(function () {
+  'use strict';
+  var v = document.querySelector('video[data-avtoplay]');
+  if (!v) return;
+  if (!('IntersectionObserver' in window)) { v.play().catch(function () {}); return; }
+  new IntersectionObserver(function (zapisi) {
+    zapisi.forEach(function (z) {
+      if (z.isIntersecting) v.play().catch(function () {});   // отказ автозапуска — не ошибка
+      else v.pause();
+    });
+  }, { threshold: 0.25 }).observe(v);
+})();
