@@ -79,3 +79,54 @@ html{ scroll-padding-top:76px }
 }
 .rolik-play:focus-visible{outline:3px solid #f59e0b; outline-offset:3px}
 .rolik-video{width:100%; height:auto; display:block; border-radius:16px; background:#0c0a09}
+
+/* --- Интерактивная стена (секция «Потрогайте вживую») ----------------------
+   Кладка собирается скриптом; здесь только внешний вид и правила, при которых
+   эффект обязан выключиться. Без JS секция остаётся тёмной с текстом и кнопкой —
+   ничего не пропадает. */
+#stena{isolation:isolate}
+.stena-wall{
+  position:absolute; inset:0; z-index:0;
+  overflow:hidden;
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 45%, #000 40%, transparent 78%);
+          mask-image:radial-gradient(120% 90% at 50% 45%, #000 40%, transparent 78%);
+}
+.brick{
+  position:absolute;
+  background:url('../img/brick-tex.webp') center/cover;
+  border-radius:2px;
+  filter:brightness(.92) saturate(1.05);
+  will-change:transform;                 /* смещение считает GPU, а не главный поток */
+  transition:transform .45s cubic-bezier(.22,1,.36,1);
+}
+/* Оттенки берём фильтрами от ОДНОЙ настоящей фактуры: десяток картинок ради
+   цвета грузить незачем, а зерно должно остаться тем же, что в каталоге. */
+.brick--2{filter:hue-rotate(-16deg) saturate(1.5) brightness(.88)}   /* терракота */
+.brick--3{filter:hue-rotate(8deg) saturate(1.15) brightness(1.12)}   /* светлый песок */
+.brick--4{filter:saturate(.25) brightness(.55)}                      /* графит */
+.brick--5{filter:hue-rotate(-38deg) saturate(1.7) brightness(.72)}   /* бордо */
+
+/* Текст поверх стены обязан читаться: затемняем кладку под ним. */
+#stena::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:radial-gradient(52% 46% at 50% 48%, rgba(12,10,9,.94) 42%, rgba(12,10,9,.62) 72%, rgba(12,10,9,.12) 100%);
+}
+#stena > .relative{position:relative; z-index:2}
+
+.stena-hint{opacity:.8}
+@media (hover:none){
+  /* На телефоне курсора нет — подсказка про касание, см. скрипт. */
+  .stena-hint::after{content:" (коснитесь пальцем)"}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .brick{transition:none}
+}
+
+@media (max-width:767px){
+  #stena::after{
+    background:linear-gradient(to bottom,
+      rgba(12,10,9,.55) 0%, rgba(12,10,9,.93) 18%, rgba(12,10,9,.95) 78%, rgba(12,10,9,.55) 100%);
+  }
+  .stena-hint::after{content:""}   /* на телефоне подсказка своя, см. разметку */
+}

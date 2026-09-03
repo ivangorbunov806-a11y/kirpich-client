@@ -11,10 +11,11 @@
   <meta name="theme-color" content="#f59e0b">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/fonts.css?v=a82b9fe5">
-  <link rel="stylesheet" href="css/site.css?v=3ae78140">
-  <link rel="stylesheet" href="css/ui.css?v=96499cf3">
+  <link rel="stylesheet" href="css/site.css?v=967dc2e7">
+  <link rel="stylesheet" href="css/ui.css?v=30489fae">
   <script defer src="js/alpine-intersect.min.js?v=534ca026"></script>
   <script defer src="js/alpine.min.js?v=63d2636a"></script>
+  <script defer src="js/stena.js?v=75dda658"></script>
   <script defer src="js/obrazec.js?v=a72ace54"></script>
   <style>
     html { scroll-behavior: smooth; scroll-padding-top: 56px; }
@@ -85,7 +86,6 @@
       <a href="#catalog"   class="hover:text-amber-400 transition-colors">Каталог</a>
       <a href="#apply"     class="hover:text-amber-400 transition-colors">Применение</a>
       <a href="#benefits"  class="hover:text-amber-400 transition-colors">Преимущества</a>
-      <a href="#rolik"     class="hover:text-amber-400 transition-colors">Видео</a>
       <a href="#contact"   class="hover:text-amber-400 transition-colors">Контакты</a>
     </nav>
     <a href="#contact"
@@ -267,9 +267,9 @@
            человек долистал сюда, а не при открытии страницы. Постер = кадр из ролика. -->
       <figure class="relative rounded-2xl overflow-hidden border border-stone-800 bg-stone-950">
         <video class="w-full h-auto block" data-avtoplay muted loop playsinline
-               preload="none" poster="video/plenka-poster.webp?v=9fc382fb"
+               preload="none" poster="video/plenka-poster.webp?v=79e308a5"
                aria-label="Как снимается защитная плёнка">
-          <source src="video/plenka.mp4?v=9e47d0d3" type="video/mp4">
+          <source src="video/plenka.mp4?v=42b2b456" type="video/mp4">
         </video>
         <figcaption class="absolute bottom-3 left-3 text-[11px] text-stone-200 bg-stone-950/70 px-2.5 py-1 rounded">
           Съёмка клиента, без обработки
@@ -1031,36 +1031,39 @@
 </section>
 
 
-<!-- ====================================================
-     РОЛИК ЦЕЛИКОМ — грузится ТОЛЬКО по клику.
-     Файл весит 2,3 МБ: это в полтора раза больше всей остальной страницы, и тянуть
-     его каждому посетителю ради тех, кто досмотрит, нельзя. До нажатия здесь лежит
-     картинка-постер на 27 КБ.
-     ==================================================== -->
-<section id="rolik" class="bg-stone-800 py-16 sm:py-20">
-  <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-[1fr_1.1fr] gap-8 items-center">
-    <div>
-      <span class="text-amber-500 text-sm font-semibold uppercase tracking-widest">Видео</span>
-      <h2 class="font-heading font-bold text-3xl sm:text-4xl mt-2 text-white">Полминуты про материал</h2>
-      <p class="text-stone-300 mt-3">
-        Как гнётся лист, как он заходит на угол без доборных элементов, как снимается
-        плёнка и что стоит на стенде в шоуруме. Со звуком, 30 секунд.
-      </p>
-      <p class="text-stone-400 text-sm mt-3">
-        Кадры со снятием плёнки и стендом — съёмка в шоуруме. Фасады — визуализации
-        на фактуре нашего материала.
-      </p>
-    </div>
 
-    <div class="rolik-box">
-      <button type="button" class="rolik-play" data-src="video/rolik.mp4?v=1" aria-label="Смотреть ролик, 30 секунд">
-        <img src="video/poster.webp?v=365cc30e" width="540" height="960" loading="lazy" decoding="async" alt="">
-        <span class="rolik-play__icon" aria-hidden="true">▶</span>
-        <span class="rolik-play__label">Смотреть · 30 секунд</span>
-      </button>
-      <noscript>
-        <a class="text-amber-400 underline" href="video/rolik.mp4">Открыть видео (2,3 МБ)</a>
-      </noscript>
+
+<!-- ====================================================
+     ИНТЕРАКТИВНАЯ СТЕНА — на месте убранного блока с роликом.
+     Смысл не в эффекте ради эффекта: человек ведёт курсором (или пальцем),
+     кладка расступается — и это ровно то, что материал делает в жизни, гнётся
+     и поддаётся. Кирпичи собираются скриптом; без него остаётся обычная ровная
+     кладка с тем же призывом, ничего не пропадает.
+     ==================================================== -->
+<section id="stena" class="relative overflow-hidden bg-stone-950 py-16 sm:py-24">
+  <div class="stena-wall" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
+    <span class="text-amber-500 text-sm font-semibold uppercase tracking-widest">Живые образцы</span>
+    <h2 class="font-heading font-bold text-4xl sm:text-5xl mt-2 text-white">Потрогайте вживую</h2>
+    <p class="text-stone-300 mt-3 max-w-xl mx-auto">
+      Фактуру и цвет по фотографии не выбирают. Приезжайте на Рабочую, 185В —
+      на стенде лежат все 15 оттенков, образец увезёте с собой бесплатно.
+    </p>
+    <p class="stena-hint text-stone-400 text-xs mt-4">
+      <span class="hidden sm:inline">проведите курсором по стене — кладка расступится</span>
+      <span class="sm:hidden">коснитесь стены — кладка расступится</span>
+    </p>
+
+    <div class="mt-7 flex flex-wrap gap-3 justify-center">
+      <a href="#contact"
+         class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 font-bold px-7 py-4 rounded-xl transition-colors">
+        Телефон и адрес
+      </a>
+      <a href="#catalog"
+         class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold px-7 py-4 rounded-xl transition-colors">
+        Сначала посмотреть цвета
+      </a>
     </div>
   </div>
 </section>
