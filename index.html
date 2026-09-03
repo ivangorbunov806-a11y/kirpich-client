@@ -11,10 +11,11 @@
   <meta name="theme-color" content="#f59e0b">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/fonts.css?v=a82b9fe5">
-  <link rel="stylesheet" href="css/site.css?v=967dc2e7">
+  <link rel="stylesheet" href="css/site.css?v=38cdba22">
   <link rel="stylesheet" href="css/ui.css?v=30489fae">
   <script defer src="js/alpine-intersect.min.js?v=534ca026"></script>
   <script defer src="js/alpine.min.js?v=63d2636a"></script>
+  <script defer src="js/raschet.js?v=876c6844"></script>
   <script defer src="js/stena.js?v=75dda658"></script>
   <script defer src="js/obrazec.js?v=a72ace54"></script>
   <style>
@@ -84,6 +85,7 @@
     <nav class="hidden md:flex items-center gap-6 text-sm text-stone-300">
       <a href="#plenka"    class="hover:text-amber-400 transition-colors">Плёнка</a>
       <a href="#catalog"   class="hover:text-amber-400 transition-colors">Каталог</a>
+      <a href="#raschet-sec" class="hover:text-amber-400 transition-colors">Расчёт</a>
       <a href="#apply"     class="hover:text-amber-400 transition-colors">Применение</a>
       <a href="#benefits"  class="hover:text-amber-400 transition-colors">Преимущества</a>
       <a href="#contact"   class="hover:text-amber-400 transition-colors">Контакты</a>
@@ -617,6 +619,92 @@
 <!-- ====================================================
      WHERE APPLIED
      ==================================================== -->
+
+<!-- ====================================================
+     КАЛЬКУЛЯТОР. Ставим сразу после каталога: человек выбрал цвет — и тут же
+     видит, сколько нужно и во что встанет. Полей с личными данными нет вовсе,
+     расчёт живёт в браузере и никуда не отправляется.
+     ==================================================== -->
+<section id="raschet-sec" class="py-16 sm:py-20 bg-stone-900">
+  <div class="max-w-4xl mx-auto px-4">
+
+    <div class="text-center mb-8">
+      <span class="text-amber-500 text-sm font-semibold uppercase tracking-widest">Расчёт</span>
+      <h2 class="font-heading font-bold text-4xl sm:text-5xl mt-2 text-white">Сколько нужно на вашу стену</h2>
+      <p class="text-stone-300 mt-3 max-w-xl mx-auto">
+        Введите размеры — посчитаем площадь с запасом на подрезку, количество плиток
+        и стоимость. Оптовая цена от 100 м² подставится сама.
+      </p>
+    </div>
+
+    <form id="raschet" class="grid md:grid-cols-2 gap-5 bg-stone-800 border border-stone-700 rounded-2xl p-5 sm:p-7">
+
+      <div class="space-y-4">
+        <div class="flex flex-wrap gap-2">
+          <button type="button" data-preset="3x2.5" class="text-xs px-3 py-2 rounded-lg bg-stone-700 hover:bg-stone-600 text-stone-200">стена 3 × 2,5 м</button>
+          <button type="button" data-preset="6x2.7" class="text-xs px-3 py-2 rounded-lg bg-stone-700 hover:bg-stone-600 text-stone-200">комната 6 × 2,7 м</button>
+          <button type="button" data-preset="12x3" class="text-xs px-3 py-2 rounded-lg bg-stone-700 hover:bg-stone-600 text-stone-200">фасад 12 × 3 м</button>
+        </div>
+
+        <label class="block">
+          <span class="text-stone-300 text-sm">Длина стены, м</span>
+          <input name="dlina" type="number" inputmode="decimal" min="0" step="0.1" placeholder="3"
+                 class="mt-1 w-full bg-stone-900 border border-stone-600 rounded-lg px-4 py-3 text-white text-lg
+                        focus:outline-none focus:ring-2 focus:ring-amber-500">
+        </label>
+
+        <label class="block">
+          <span class="text-stone-300 text-sm">Высота, м</span>
+          <input name="vysota" type="number" inputmode="decimal" min="0" step="0.1" placeholder="2,5"
+                 class="mt-1 w-full bg-stone-900 border border-stone-600 rounded-lg px-4 py-3 text-white text-lg
+                        focus:outline-none focus:ring-2 focus:ring-amber-500">
+        </label>
+
+        <label class="block">
+          <span class="text-stone-300 text-sm">Вычесть окна и двери, м²
+            <span class="text-stone-500">— если есть</span></span>
+          <input name="proemy" type="number" inputmode="decimal" min="0" step="0.1" placeholder="0"
+                 class="mt-1 w-full bg-stone-900 border border-stone-600 rounded-lg px-4 py-3 text-white text-lg
+                        focus:outline-none focus:ring-2 focus:ring-amber-500">
+        </label>
+      </div>
+
+      <div class="bg-stone-900 border border-stone-700 rounded-xl p-5 flex flex-col">
+        <dl class="space-y-3">
+          <div class="flex justify-between items-baseline gap-3">
+            <dt class="text-stone-400 text-sm">Площадь с запасом</dt>
+            <dd data-out="ploshad" class="font-heading font-bold text-xl text-white">—</dd>
+          </div>
+          <div class="flex justify-between items-baseline gap-3">
+            <dt class="text-stone-400 text-sm">Плиток 240 × 65 мм</dt>
+            <dd data-out="plitok" class="font-heading font-bold text-xl text-white">—</dd>
+          </div>
+          <div class="flex justify-between items-baseline gap-3">
+            <dt class="text-stone-400 text-sm">Цена за м²</dt>
+            <dd data-out="cena" class="font-heading font-bold text-xl text-white">—</dd>
+          </div>
+          <div class="flex justify-between items-baseline gap-3 pt-3 border-t border-stone-700">
+            <dt class="text-stone-300">Материал всего</dt>
+            <dd data-out="itog" class="font-heading font-bold text-3xl text-amber-500">—</dd>
+          </div>
+        </dl>
+
+        <p data-out="zametka" class="text-stone-400 text-xs mt-4 leading-snug">Введите длину и высоту стены.</p>
+
+        <p class="text-stone-500 text-xs mt-3 leading-snug">
+          Расчёт предварительный: клей и работу не считаем — расход зависит от основания.
+          Точную смету посчитаем по телефону.
+        </p>
+
+        <a href="#contact"
+           class="mt-auto pt-5 inline-flex items-center justify-center gap-2 text-amber-400 hover:text-amber-300 font-semibold">
+          Проверить расчёт с продавцом →
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+
 <section id="apply" class="py-20 bg-stone-800">
   <div class="max-w-6xl mx-auto px-4">
 
