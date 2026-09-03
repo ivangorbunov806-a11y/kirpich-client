@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#f59e0b">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/fonts.css?v=a82b9fe5">
-  <link rel="stylesheet" href="css/site.css?v=5dff4d70">
+  <link rel="stylesheet" href="css/site.css?v=45d31c14">
   <link rel="stylesheet" href="css/ui.css?v=a69a0553">
   <script defer src="js/alpine-intersect.min.js?v=534ca026"></script>
   <script defer src="js/alpine.min.js?v=63d2636a"></script>
@@ -265,19 +265,21 @@
       </figcaption>
     </figure>
 
-      <!-- Видео БЕЗ ЗВУКА: автозапуск на телефоне разрешён только немому, со звуком
-           браузер его просто не проиграет. preload="none" — файл тянется, лишь когда
-           человек долистал сюда, а не при открытии страницы. Постер = кадр из ролика. -->
-      <figure class="relative rounded-2xl overflow-hidden border border-stone-800 bg-stone-950">
-        <video class="w-full h-auto block" data-avtoplay muted loop playsinline
-               preload="none" poster="video/plenka-poster.webp?v=1cffa246"
-               aria-label="Как снимается защитная плёнка">
-          <source src="video/plenka.mp4?v=b78b3ecf" type="video/mp4">
-        </video>
-        <figcaption class="absolute bottom-3 left-3 text-[11px] text-stone-200 bg-stone-950/70 px-2.5 py-1 rounded">
-          Съёмка клиента, без обработки
-        </figcaption>
-      </figure>
+      <!-- Ролик целиком, 30 секунд со звуком. Грузится ТОЛЬКО по клику:
+           файл весит 1,9 МБ — больше всей остальной страницы, и тянуть его
+           каждому ради тех, кто досмотрит, нельзя. До нажатия здесь картинка
+           на 16 КБ. Без JS работает прямая ссылка на файл. -->
+      <div class="rolik-box">
+        <button type="button" class="rolik-play" data-src="video/rolik.mp4?v=cb9d3c45"
+                aria-label="Смотреть ролик о материале, 30 секунд">
+          <img src="video/rolik-poster.webp?v=0fb7f568" width="460" height="818" loading="lazy" decoding="async" alt="">
+          <span class="rolik-play__icon" aria-hidden="true">▶</span>
+          <span class="rolik-play__label">Ролик о материале · 30 секунд со звуком</span>
+        </button>
+        <noscript>
+          <a class="text-amber-400 underline" href="video/rolik.mp4">Открыть видео (1,9 МБ)</a>
+        </noscript>
+      </div>
 
     </div>
 
