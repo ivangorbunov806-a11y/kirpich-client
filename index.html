@@ -589,7 +589,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
               </svg>
             </span>
-            <span class="text-stone-300 text-sm"><strong class="text-white">2 м² за 10 минут</strong> — вес всего ~2 кг/м², справится любой</span>
+            <span class="text-stone-300 text-sm"><strong class="text-white">2 м² за 10 минут</strong> — вес всего ~6 кг/м², справится любой</span>
           </li>
           <li class="flex items-start gap-3">
             <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -851,15 +851,13 @@
     <!-- Цифры в цифрах: анимированные счётчики при скролле -->
     <div class="grid grid-cols-3 gap-3 sm:gap-6 mb-12 max-w-3xl mx-auto text-center">
 
-      <div x-data="{ n: 0 }" x-intersect="let t = setInterval(() => { n += 1; if (n >= 15) { n = 15; clearInterval(t) } }, 60)"
-           class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700">
-        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500"><span x-text="n"></span></div>
+      <div class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700">
+        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500">15</div>
         <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">цветов + микс в наличии</div>
       </div>
 
-      <div x-data="{ n: 0 }" x-intersect="let t = setInterval(() => { n += 30; if (n >= 900) { n = 900; clearInterval(t) } }, 30)"
-           class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700">
-        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500">от <span x-text="n"></span></div>
+      <div class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700">
+        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500">от 900</div>
         <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">₽/м² стартовая цена</div>
       </div>
 
