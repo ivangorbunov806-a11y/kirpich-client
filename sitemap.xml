@@ -35,4 +35,25 @@
       <image:title>Акцентная стена в интерьере из гибкого кирпича</image:title>
     </image:image>
   </url>
+  <!-- блог -->
+  <url>
+    <loc>https://saranskdekor.ru/blog/</loc>
+    <lastmod>2026-09-03</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://saranskdekor.ru/blog/kak-kleit-gibkiy-kirpich/</loc>
+    <lastmod>2026-09-03</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://saranskdekor.ru/blog/gibkiy-kirpich-ili-klinker/</loc>
+    <lastmod>2026-09-03</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://saranskdekor.ru/blog/setka-i-plenka/</loc>
+    <lastmod>2026-09-03</lastmod>
+    <priority>0.6</priority>
+  </url>
 </urlset>
