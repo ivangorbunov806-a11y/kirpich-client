@@ -80,46 +80,6 @@ html{ scroll-padding-top:76px }
 .rolik-play:focus-visible{outline:3px solid #f59e0b; outline-offset:3px}
 .rolik-video{width:100%; height:auto; display:block; border-radius:16px; background:#0c0a09}
 
-/* --- Кладка и плёнка (секция «Потрогайте вживую») --------------------------
-   Кирпичи — ОДИННАДЦАТЬ разных снимков со стенда. Прежде была одна текстура,
-   раскрашенная фильтрами hue-rotate: повторялось одно зерно и появлялись цвета,
-   которых у товара нет. Никаких фильтров здесь больше нет принципиально. */
-#stena{isolation:isolate}
-.stena-wall{
-  position:absolute; inset:0; z-index:0; overflow:hidden;
-  /* Настоящий снимок стенда: перспектива, свет и неровные швы — то, чего
-     синтетическая кладка не даёт ни при каком подборе цветов. */
-  background:#171310 url('../img/stena-fon.webp?v=a8a8bfc1') center/cover no-repeat;
-}
-/* Плёнка поверх кладки: её стирает указатель (js/stena.js). */
-.stena-plenka{
-  position:absolute; inset:0; z-index:1; pointer-events:none;
-  /* без mix-blend-mode: он выбеливал кладку до пастели и убивал цвет товара */
-}
-
-/* Текст читается поверх кладки только с подложкой — но она не должна закрывать
-   всю стену, иначе снимать плёнку будет негде. Затемняем узкой колонкой по центру. */
-#stena::after{
-  content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
-  background:radial-gradient(46% 42% at 50% 46%,
-    rgba(12,10,9,.92) 40%, rgba(12,10,9,.55) 72%, rgba(12,10,9,0) 100%);
-}
-#stena > .relative{position:relative; z-index:3}
-.stena-hint{opacity:.85}
-
-@media (max-width:767px){
-  #stena::after{
-    background:linear-gradient(to bottom,
-      rgba(12,10,9,.35) 0%, rgba(12,10,9,.90) 20%, rgba(12,10,9,.92) 74%, rgba(12,10,9,.35) 100%);
-  }
-}
-
-@media (prefers-reduced-motion:reduce){
-  /* Движение выключено — плёнку не показываем вовсе: неснимаемая плёнка
-     выглядела бы как мутное стекло поверх товара. */
-  .stena-plenka{display:none}
-}
-
 /* --- Текст статьи блога ----------------------------------------------------
    Отдельная типографика: в статье длинный текст, и правила для лендинга ему
    не годятся. Ширина колонки ограничена самим контейнером (max-w-3xl),
