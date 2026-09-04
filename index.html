@@ -84,7 +84,6 @@
     <nav class="hidden md:flex items-center gap-1 text-sm">
       <a href="#plenka"    class="hidden lg:inline-block px-2 py-1.5 rounded-lg text-stone-200 font-medium whitespace-nowrap hover:text-amber-400 hover:bg-white/10 transition-colors">Плёнка</a>
       <a href="#catalog"   class="px-2 py-1.5 rounded-lg text-stone-200 font-medium whitespace-nowrap hover:text-amber-400 hover:bg-white/10 transition-colors">Каталог</a>
-      <a href="#raschet-sec" class="px-2 py-1.5 rounded-lg text-stone-200 font-medium whitespace-nowrap hover:text-amber-400 hover:bg-white/10 transition-colors">Расчёт</a>
       <a href="/blog/"   class="px-2 py-1.5 rounded-lg text-stone-200 font-medium whitespace-nowrap hover:text-amber-400 hover:bg-white/10 transition-colors">Статьи</a>
       <a href="#apply"     class="hidden lg:inline-block px-2 py-1.5 rounded-lg text-stone-200 font-medium whitespace-nowrap hover:text-amber-400 hover:bg-white/10 transition-colors">Применение</a>
       <a href="#benefits"  class="hidden xl:inline-block px-2 py-1.5 rounded-lg text-stone-200 font-medium whitespace-nowrap hover:text-amber-400 hover:bg-white/10 transition-colors">Преимущества</a>
@@ -966,7 +965,7 @@
       </div>
 
       <div class="bg-stone-800 rounded-2xl p-4 sm:p-6 border border-stone-700">
-        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500">от 900</div>
+        <div class="font-heading font-bold text-3xl sm:text-5xl text-amber-500">от 1090</div>
         <div class="text-stone-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">₽/м² стартовая цена</div>
       </div>
 
@@ -1073,6 +1072,56 @@
 </section>
 
 <!-- ====================================================
+     СТАТЬИ. Раздел существовал, но попасть в него можно было только через
+     верхнее меню — то есть почти никто. Блок на главной ведёт туда людей
+     и связывает страницы между собой: поисковику это тоже нужно.
+     ==================================================== -->
+<section id="stati" class="py-16 sm:py-20 bg-stone-900">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <span class="text-amber-500 text-sm font-semibold uppercase tracking-widest">Разбираемся</span>
+      <h2 class="font-heading font-bold text-4xl sm:text-5xl mt-2 text-white">Что спрашивают перед покупкой</h2>
+      <p class="text-stone-300 mt-3 max-w-2xl mx-auto">
+        Три вопроса, которые задают чаще всего. Отвечаем по опыту своего производства,
+        без рекламных обещаний.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4">
+      <a href="/blog/kak-kleit-gibkiy-kirpich/"
+         class="block bg-stone-800 border border-stone-700 rounded-2xl p-6 hover:border-amber-600 transition-colors">
+        <span class="text-amber-500 text-xs font-semibold uppercase tracking-wide">Монтаж</span>
+        <h3 class="font-heading font-bold text-xl text-white mt-2">Как клеить своими руками</h3>
+        <p class="text-stone-300 text-sm mt-2">На какое основание, каким клеем, снизу вверх или сверху вниз и как заполнять швы.</p>
+        <span class="inline-block mt-3 text-amber-400 font-semibold text-sm">Читать →</span>
+      </a>
+
+      <a href="/blog/gibkiy-kirpich-ili-klinker/"
+         class="block bg-stone-800 border border-stone-700 rounded-2xl p-6 hover:border-amber-600 transition-colors">
+        <span class="text-amber-500 text-xs font-semibold uppercase tracking-wide">Сравнение</span>
+        <h3 class="font-heading font-bold text-xl text-white mt-2">Гибкий кирпич или клинкер</h3>
+        <p class="text-stone-300 text-sm mt-2">Вес, толщина, углы и цена. Где гибкий выигрывает, а где честнее взять клинкер.</p>
+        <span class="inline-block mt-3 text-amber-400 font-semibold text-sm">Читать →</span>
+      </a>
+
+      <a href="/blog/setka-i-plenka/"
+         class="block bg-stone-800 border border-stone-700 rounded-2xl p-6 hover:border-amber-600 transition-colors">
+        <span class="text-amber-500 text-xs font-semibold uppercase tracking-wide">Материал</span>
+        <h3 class="font-heading font-bold text-xl text-white mt-2">Зачем сетка и плёнка</h3>
+        <p class="text-stone-300 text-sm mt-2">Что за жёлтая сетка с изнанки и почему плёнка избавляет от отмывки стены.</p>
+        <span class="inline-block mt-3 text-amber-400 font-semibold text-sm">Читать →</span>
+      </a>
+    </div>
+
+    <div class="text-center mt-8">
+      <a href="/blog/" class="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-semibold">
+        Все статьи →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
      HOW TO ORDER
      ==================================================== -->
 <section class="py-20 bg-stone-800">
@@ -1144,55 +1193,7 @@
 
 
 
-<!-- ====================================================
-     СТАТЬИ. Раздел существовал, но попасть в него можно было только через
-     верхнее меню — то есть почти никто. Блок на главной ведёт туда людей
-     и связывает страницы между собой: поисковику это тоже нужно.
-     ==================================================== -->
-<section id="stati" class="py-16 sm:py-20 bg-stone-900">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="text-center mb-10">
-      <span class="text-amber-500 text-sm font-semibold uppercase tracking-widest">Разбираемся</span>
-      <h2 class="font-heading font-bold text-4xl sm:text-5xl mt-2 text-white">Что спрашивают перед покупкой</h2>
-      <p class="text-stone-300 mt-3 max-w-2xl mx-auto">
-        Три вопроса, которые задают чаще всего. Отвечаем по опыту своего производства,
-        без рекламных обещаний.
-      </p>
-    </div>
 
-    <div class="grid md:grid-cols-3 gap-4">
-      <a href="/blog/kak-kleit-gibkiy-kirpich/"
-         class="block bg-stone-800 border border-stone-700 rounded-2xl p-6 hover:border-amber-600 transition-colors">
-        <span class="text-amber-500 text-xs font-semibold uppercase tracking-wide">Монтаж</span>
-        <h3 class="font-heading font-bold text-xl text-white mt-2">Как клеить своими руками</h3>
-        <p class="text-stone-300 text-sm mt-2">На какое основание, каким клеем, снизу вверх или сверху вниз и как заполнять швы.</p>
-        <span class="inline-block mt-3 text-amber-400 font-semibold text-sm">Читать →</span>
-      </a>
-
-      <a href="/blog/gibkiy-kirpich-ili-klinker/"
-         class="block bg-stone-800 border border-stone-700 rounded-2xl p-6 hover:border-amber-600 transition-colors">
-        <span class="text-amber-500 text-xs font-semibold uppercase tracking-wide">Сравнение</span>
-        <h3 class="font-heading font-bold text-xl text-white mt-2">Гибкий кирпич или клинкер</h3>
-        <p class="text-stone-300 text-sm mt-2">Вес, толщина, углы и цена. Где гибкий выигрывает, а где честнее взять клинкер.</p>
-        <span class="inline-block mt-3 text-amber-400 font-semibold text-sm">Читать →</span>
-      </a>
-
-      <a href="/blog/setka-i-plenka/"
-         class="block bg-stone-800 border border-stone-700 rounded-2xl p-6 hover:border-amber-600 transition-colors">
-        <span class="text-amber-500 text-xs font-semibold uppercase tracking-wide">Материал</span>
-        <h3 class="font-heading font-bold text-xl text-white mt-2">Зачем сетка и плёнка</h3>
-        <p class="text-stone-300 text-sm mt-2">Что за жёлтая сетка с изнанки и почему плёнка избавляет от отмывки стены.</p>
-        <span class="inline-block mt-3 text-amber-400 font-semibold text-sm">Читать →</span>
-      </a>
-    </div>
-
-    <div class="text-center mt-8">
-      <a href="/blog/" class="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-semibold">
-        Все статьи →
-      </a>
-    </div>
-  </div>
-</section>
 
 <!-- ====================================================
      CONTACT
