@@ -89,7 +89,7 @@ html{ scroll-padding-top:76px }
   position:absolute; inset:0; z-index:0; overflow:hidden;
   /* Настоящий снимок стенда: перспектива, свет и неровные швы — то, чего
      синтетическая кладка не даёт ни при каком подборе цветов. */
-  background:#171310 url('../img/stena-fon.webp?v=0f759610') center/cover no-repeat;
+  background:#171310 url('../img/stena-fon.webp?v=a8a8bfc1') center/cover no-repeat;
 }
 /* Плёнка поверх кладки: её стирает указатель (js/stena.js). */
 .stena-plenka{
