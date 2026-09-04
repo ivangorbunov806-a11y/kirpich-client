@@ -85,11 +85,11 @@ html{ scroll-padding-top:76px }
    раскрашенная фильтрами hue-rotate: повторялось одно зерно и появлялись цвета,
    которых у товара нет. Никаких фильтров здесь больше нет принципиально. */
 #stena{isolation:isolate}
-.stena-wall{position:absolute; inset:0; z-index:0; overflow:hidden; background:#171310}
-.brick{
-  position:absolute;
-  background-size:cover; background-position:center;
-  border-radius:1px;
+.stena-wall{
+  position:absolute; inset:0; z-index:0; overflow:hidden;
+  /* Настоящий снимок стенда: перспектива, свет и неровные швы — то, чего
+     синтетическая кладка не даёт ни при каком подборе цветов. */
+  background:#171310 url('../img/stena-fon.webp?v=0f759610') center/cover no-repeat;
 }
 /* Плёнка поверх кладки: её стирает указатель (js/stena.js). */
 .stena-plenka{
