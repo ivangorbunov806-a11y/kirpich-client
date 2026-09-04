@@ -4,3 +4,8 @@
 # Сам файл пересоздаётся из index.html за секунду, хранить его незачем.
 fonts/_glyphs.txt
 node_modules/
+
+# Настоящие реквизиты ИП — персональные данные, в репозиторий не попадают.
+# В git уходит только шаблон с тегами #INN# и образец requisites.local.json.example.
+requisites.local.json
+dist/
