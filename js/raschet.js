@@ -4,19 +4,23 @@
  * ЗАЧЕМ. Главный вопрос покупателя — «сколько надо на мою стену и во что встанет
  * всё вместе». Пока он считает это сам в уме, он не звонит.
  *
- * ЧТО СЧИТАЕМ И ОТКУДА ЧИСЛА:
- * · площадь = длина × высота, минус проёмы, которые человек вычитает сам;
+ * ⭐ СЧИТАЕМ ЛИСТАМИ, А НЕ КВАДРАТНЫМИ МЕТРАМИ (правка 04.09.2026 по слову Ивана).
+ * Материал отпускается листами по 0,5 м², и дробное число метров купить нельзя:
+ * расчёт «нужно 7,9 м²» в магазине всё равно превратится в 16 листов. Поэтому
+ * площадь округляется ВВЕРХ до целого листа, а цена считается от того, что
+ * человек реально оплатит. Иначе итог на сайте не сойдётся с чеком — а это
+ * худший вид ошибки: она обнаруживается уже у кассы.
+ *
+ * ОСТАЛЬНЫЕ ЧИСЛА И ИХ ОСНОВАНИЯ:
  * · плитка 240 × 65 мм при шве 5 мм занимает 0,245 × 0,070 = 0,01715 м²,
- *   значит в квадратном метре 58,3 штуки — округляем вверх;
- * · запас 5 % на подрезку: на арках и углах лист режется, остатки не всегда идут в дело;
+ *   значит в квадратном метре 58,3 штуки, в листе — около 29;
+ * · запас 5 % на подрезку: на арках и углах лист режется, остатки не всегда в дело;
  * · цена 900 ₽/м², от 100 м² — 810 ₽/м² (порог срабатывает сам);
  * · клей НЕ считаем: расход зависит от основания и гребёнки, а выдумывать цифру
- *   в расчёте, который человек понесёт в магазин, нельзя. Спросим у клиента —
- *   появится строка.
+ *   в расчёте, который человек понесёт в магазин, нельзя.
  *
  * ПЕРСОНАЛЬНЫХ ДАННЫХ НЕТ. Ни одного поля с именем или телефоном: расчёт целиком
- * живёт в браузере, никуда не отправляется, итог человек забирает сам — копирует
- * или несёт в разговор. Поэтому и согласия на обработку не требуется.
+ * живёт в браузере, никуда не отправляется, согласия на обработку не требуется.
  */
 (function () {
   'use strict';
@@ -24,6 +28,7 @@
   var form = document.getElementById('raschet');
   if (!form) return;
 
+  var LIST_M2 = 0.5;           // площадь одного листа
   var PLITOK_V_M2 = 58.3;      // 0,245 × 0,070 м с учётом шва 5 мм
   var ZAPAS = 0.05;            // 5 % на подрезку
   var CENA = 900;
@@ -34,6 +39,7 @@
     dlina: form.querySelector('[name=dlina]'),
     vysota: form.querySelector('[name=vysota]'),
     proemy: form.querySelector('[name=proemy]'),
+    listov: form.querySelector('[data-out=listov]'),
     ploshad: form.querySelector('[data-out=ploshad]'),
     plitok: form.querySelector('[data-out=plitok]'),
     cena: form.querySelector('[data-out=cena]'),
@@ -48,38 +54,44 @@
 
   function razryady(n) {
     // 12 345 → «12 345»: неразрывный пробел, чтобы число не рвалось на две строки
-    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+
+  function pusto() {
+    ['listov', 'ploshad', 'plitok', 'cena', 'itog'].forEach(function (k) {
+      if (el[k]) el[k].textContent = '—';
+    });
+    el.zametka.textContent = 'Введите длину и высоту стены.';
   }
 
   function schitat() {
     var d = chislo(el.dlina), v = chislo(el.vysota), pr = chislo(el.proemy);
     var s = Math.max(0, d * v - pr);
 
-    if (!s) {
-      el.ploshad.textContent = '—';
-      el.plitok.textContent = '—';
-      el.cena.textContent = '—';
-      el.itog.textContent = '—';
-      el.zametka.textContent = 'Введите длину и высоту стены.';
-      return;
-    }
+    if (!s) { pusto(); return; }
 
     var sZapasom = s * (1 + ZAPAS);
-    var cena = sZapasom >= PORAG_OPT ? CENA_OPT : CENA;
+    // Округляем вверх до целого листа: половину листа не продают.
+    var listov = Math.ceil(sZapasom / LIST_M2);
+    var kOplate = listov * LIST_M2;
+    var cena = kOplate >= PORAG_OPT ? CENA_OPT : CENA;
 
-    el.ploshad.textContent = sZapasom.toFixed(1).replace('.', ',') + ' м²';
-    el.plitok.textContent = razryady(Math.ceil(sZapasom * PLITOK_V_M2)) + ' шт';
+    if (el.listov) el.listov.textContent = razryady(listov) + ' шт';
+    el.ploshad.textContent = kOplate.toFixed(1).replace('.', ',') + ' м²';
+    el.plitok.textContent = '≈ ' + razryady(kOplate * PLITOK_V_M2) + ' шт';
     el.cena.textContent = cena + ' ₽/м²';
-    el.itog.textContent = razryady(sZapasom * cena) + ' ₽';
+    el.itog.textContent = razryady(kOplate * cena) + ' ₽';
 
+    var chasti = ['Лист — 0,5 м², округлили вверх до целого. В расчёте запас 5 % на подрезку.'];
     if (cena === CENA_OPT) {
-      el.zametka.textContent = 'От 100 м² действует оптовая цена — она уже учтена. '
-        + 'В расчёте есть запас 5 % на подрезку.';
+      chasti.push('От 100 м² действует оптовая цена — она уже учтена.');
     } else {
-      var doOpta = Math.ceil(PORAG_OPT - sZapasom);
-      el.zametka.textContent = 'В расчёте есть запас 5 % на подрезку. '
-        + 'До оптовой цены 810 ₽/м² не хватает ' + doOpta + ' м².';
+      // Считаем в ЛИСТАХ, а не в метрах: человеку покупать листами, и «не хватает
+      // 14 м²» он всё равно переведёт в листы сам.
+      var nuzhno = Math.ceil((PORAG_OPT - kOplate) / LIST_M2);
+      chasti.push('До оптовой цены 810 ₽/м² не хватает ' + razryady(nuzhno) + ' листов.');
     }
+    el.zametka.textContent = chasti.join(' ');
   }
 
   form.addEventListener('input', schitat);
