@@ -108,3 +108,9 @@ html{ scroll-padding-top:76px }
 .statya th, .statya td{border-bottom:1px solid #44403c; padding:9px 10px; text-align:left; vertical-align:top}
 .statya th{color:#a8a29e; font-weight:500; white-space:nowrap}
 .statya code{background:#292524; padding:2px 6px; border-radius:4px; font-size:.9em}
+
+/* <picture> вокруг картинок (AVIF + запасной WebP) не должен участвовать в раскладке:
+   классы Tailwind вроде h-full и absolute inset-0 стоят на самом img, а лишняя
+   обёртка-блок между ним и родителем ломала бы позиционирование. display:contents
+   убирает обёртку из потока, оставляя картинку прямым потомком. */
+picture { display: contents; }

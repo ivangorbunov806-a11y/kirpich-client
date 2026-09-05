@@ -45,7 +45,11 @@
   function open(img, title, price) {
     if (!box) build();
     lastFocused = document.activeElement;
-    box.querySelector('.obrazec__img').src = img.currentSrc || img.src;
+    // ⭐ В карточке теперь стоит МИНИАТЮРА (536 px), а крупно надо показать полный
+    // файл образца — его адрес лежит в data-full. Без этого при увеличении был бы
+    // виден растянутый эскиз. Если data-full нет (старая разметка) — берём как раньше.
+    box.querySelector('.obrazec__img').src =
+      img.getAttribute('data-full') || img.currentSrc || img.src;
     box.querySelector('.obrazec__img').alt = img.alt || title || '';
     box.querySelector('.obrazec__cap').textContent =
       [title, price, 'реальное фото стенда в шоуруме'].filter(Boolean).join(' · ');

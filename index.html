@@ -11,12 +11,12 @@
   <meta name="theme-color" content="#f59e0b">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/fonts.css?v=a82b9fe5">
-  <link rel="stylesheet" href="css/site.css?v=b07b0a29">
-  <link rel="stylesheet" href="css/ui.css?v=3a337f5d">
+  <link rel="stylesheet" href="css/site.css?v=52b3f1b4">
+  <link rel="stylesheet" href="css/ui.css?v=37251222">
   <script defer src="js/alpine-intersect.min.js?v=534ca026"></script>
   <script defer src="js/alpine.min.js?v=63d2636a"></script>
   <script defer src="js/raschet.js?v=915047b5"></script>
-  <script defer src="js/obrazec.js?v=a72ace54"></script>
+  <script defer src="js/obrazec.js?v=63f3704e"></script>
   <style>
     html { scroll-behavior: smooth; scroll-padding-top: 56px; }
     .hero-overlay {
@@ -111,54 +111,41 @@
      ==================================================== -->
 <section id="hero" class="relative min-h-screen overflow-hidden pt-16">
 
-  <!-- Desktop: split-screen 50/50 -->
-  <div class="hidden md:flex absolute inset-0">
-    <div class="w-1/2 h-full relative">
+  <!-- Фоновые фото: колонкой на телефоне, в две половины на ПК.
+       ОДИН набор картинок на оба случая — см. комментарий в истории правок. -->
+  <div class="absolute inset-0 flex flex-col md:flex-row">
+
+    <div class="h-1/2 md:h-full w-full md:w-1/2 relative">
       <picture>
+        <source type="image/avif" media="(max-width: 767px)" srcset="img/hero-mobile.avif?v=a7cc2671">
+        <source type="image/avif" media="(min-width: 768px)" srcset="img/hero-desktop.avif?v=976c339e">
         <source media="(max-width: 767px)" srcset="img/hero-mobile.webp?v=fd738b82">
-        <img
+        <img width="780" height="961"
           src="img/hero-desktop.webp?v=f3e4c01f"
           alt="Гибкий Кирпич — отделка фасада снаружи"
           class="absolute inset-0 w-full h-full object-cover object-center"
         />
       </picture>
-    </div>
-    <div class="w-1/2 h-full relative">
-      <img
-        src="img/hero-interior.webp?v=b5345b60"
-        alt="Гибкий Кирпич — акцентная стена в интерьере спальни"
-        class="absolute inset-0 w-full h-full object-cover object-center"
-      />
-    </div>
-  </div>
-
-  <!-- Mobile: vertical split, верх — фасад, низ — интерьер -->
-  <div class="md:hidden absolute inset-0 flex flex-col">
-    <div class="h-1/2 w-full relative">
-      <picture>
-        <source media="(min-width: 768px)" srcset="img/hero-desktop.webp?v=f3e4c01f">
-        <img
-          src="img/hero-mobile.webp?v=fd738b82"
-          alt="Гибкий Кирпич — отделка фасада снаружи"
-          class="absolute inset-0 w-full h-full object-cover object-center"
-        />
-      </picture>
-      <!-- Бейдж: верхнее фото -->
-      <span class="absolute top-16 left-3 z-20 inline-flex items-center gap-1 bg-stone-950/55 backdrop-blur-sm text-amber-300 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">
+      <!-- Бейдж только на телефоне: на ПК половины и так подписаны текстом -->
+      <span class="md:hidden absolute top-16 left-3 z-20 inline-flex items-center gap-1 bg-stone-950/55 backdrop-blur-sm text-amber-300 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">
         Снаружи · фасад
       </span>
     </div>
-    <div class="h-1/2 w-full relative">
-      <img
-        src="img/hero-interior.webp?v=b5345b60"
-        alt="Гибкий Кирпич — акцентная стена в интерьере спальни"
-        class="absolute inset-0 w-full h-full object-cover object-center"
-      />
-      <!-- Бейдж: нижнее фото -->
-      <span class="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1 bg-stone-950/55 backdrop-blur-sm text-amber-300 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">
+
+    <div class="h-1/2 md:h-full w-full md:w-1/2 relative">
+      <picture>
+        <source type="image/avif" srcset="img/hero-interior.avif?v=13e76353">
+        <img width="780" height="961"
+          src="img/hero-interior.webp?v=b5345b60"
+          alt="Гибкий Кирпич — акцентная стена в интерьере спальни"
+          class="absolute inset-0 w-full h-full object-cover object-center"
+        />
+      </picture>
+      <span class="md:hidden absolute bottom-3 right-3 z-20 inline-flex items-center gap-1 bg-stone-950/55 backdrop-blur-sm text-amber-300 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">
         Внутри · интерьер
       </span>
     </div>
+
   </div>
 
   <!-- Desktop overlay: общее затемнение для читаемости текста по центру -->
@@ -262,9 +249,9 @@
 
     <div class="flex flex-col">
       <figure class="plenka-shot relative rounded-2xl overflow-hidden border border-stone-800">
-      <img class="w-full h-auto" src="img/plenka-real.webp?v=4414f2a6" width="1400" height="613" loading="lazy" decoding="async"
+      <picture><source type="image/avif" srcset="img/plenka-real.avif?v=557fbf4b"><img class="w-full h-auto" src="img/plenka-real.webp?v=4414f2a6" width="1400" height="613" loading="lazy" decoding="async"
            alt="Защитная плёнка снимается с плитки, под ней чистая поверхность"
-           />
+           /></picture>
       <figcaption class="absolute bottom-3 left-3 text-[11px] text-stone-200 bg-stone-950/70 px-2.5 py-1 rounded">
         Реальное фото, шоурум на Рабочей
       </figcaption>
@@ -295,7 +282,7 @@
       <div class="rolik-box">
         <button type="button" class="rolik-play" data-src="video/rolik.mp4?v=cb9d3c45"
                 aria-label="Смотреть ролик о материале, 30 секунд">
-          <img src="video/rolik-poster.webp?v=e04f12ba" width="460" height="818" loading="lazy" decoding="async" alt="">
+          <picture><source type="image/avif" srcset="video/rolik-poster.avif?v=8728b24e"><img src="video/rolik-poster.webp?v=e04f12ba" width="460" height="818" loading="lazy" decoding="async" alt=""></picture>
           <span class="rolik-play__icon" aria-hidden="true">▶</span>
           <span class="rolik-play__label">Ролик о материале · 30 секунд со звуком</span>
         </button>
@@ -334,8 +321,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4.webp?v=dd528653"
-               alt="Янтарный гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4-360.avif?v=9b2b6cd9 360w, img/thumb/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4-536.avif?v=166b2769 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4.webp?v=dd528653" width="536" height="402" loading="lazy" src="img/thumb/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4-536.webp?v=134ee196"
+               alt="Янтарный гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4-360.webp?v=a243cb5e 360w, img/thumb/oAtetLEksYzpiON5vwVVKCfuNMmbS7sEFhiWMtlaqVHIjaZfThV8rXm0Dvh1d5MwCGEYFnoMg7Aw-qRXGtXRnIU4-536.webp?v=134ee196 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -353,8 +340,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/FBLth0idunxbVF5TiEKGsHaSjFRzTAj6dmz9O5ku1LYCC7JDreQ-03Pxkr4Rn7W0-tAeEq2xJQXLmCQ4_kPWiSGv.webp?v=c7a212ae"
-               alt="Горчичный гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/FBLth0idunxbVF5TiEKGsHaSjFRzTAj6dmz9O5ku1LYCC7JDreQ-03Pxkr4Rn7W0-tAeEq2xJQXLmCQ4_kPWiSGv-360.avif?v=f4854d33 360w, img/thumb/FBLth0idunxbVF5TiEKGsHaSjFRzTAj6dmz9O5ku1LYCC7JDreQ-03Pxkr4Rn7W0-tAeEq2xJQXLmCQ4_kPWiSGv-536.avif?v=1fba0c94 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/FBLth0idunxbVF5TiEKGsHaSjFRzTAj6dmz9O5ku1LYCC7JDreQ-03Pxkr4Rn7W0-tAeEq2xJQXLmCQ4_kPWiSGv.webp?v=c7a212ae" width="536" height="402" loading="lazy" src="img/thumb/FBLth0idunxbVF5TiEKGsHaSjFRzTAj6dmz9O5ku1LYCC7JDreQ-03Pxkr4Rn7W0-tAeEq2xJQXLmCQ4_kPWiSGv-536.webp?v=2b7a5ac1"
+               alt="Горчичный гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/FBLth0idunxbVF5TiEKGsHaSjFRzTAj6dmz9O5ku1LYCC7JDreQ-03Pxkr4Rn7W0-tAeEq2xJQXLmCQ4_kPWiSGv-360.webp?v=8e2453d8 360w, img/thumb/FBLth0idunxbVF5TiEKGsHaSjFRzTAj6dmz9O5ku1LYCC7JDreQ-03Pxkr4Rn7W0-tAeEq2xJQXLmCQ4_kPWiSGv-536.webp?v=2b7a5ac1 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -372,8 +359,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr-.webp?v=e214e6b8"
-               alt="Терракотовый гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr--360.avif?v=5701113c 360w, img/thumb/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr--536.avif?v=1e08bf86 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr-.webp?v=e214e6b8" width="536" height="402" loading="lazy" src="img/thumb/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr--536.webp?v=8ca66ccd"
+               alt="Терракотовый гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr--360.webp?v=a640b460 360w, img/thumb/L9ni-Qm0EyPrA6P3xUZs9h0ijdvGYel-pdpAfJKJPmIC6Sf-7hTBN5EV7LQMwH_ug3tGWiB7l8Ikw-H2oW7guCr--536.webp?v=8ca66ccd 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -391,8 +378,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/iIHfCJwHW_bPhAQt_M0tR8umyPEeEGmqE5fnMJwVymArLF4C3ZtrTOhV0aZSQcnZr48xyCJd009ZmX_ROYer9-mA.webp?v=116a40ea"
-               alt="Оранжево-коричневый гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/iIHfCJwHW_bPhAQt_M0tR8umyPEeEGmqE5fnMJwVymArLF4C3ZtrTOhV0aZSQcnZr48xyCJd009ZmX_ROYer9-mA-360.avif?v=0c481499 360w, img/thumb/iIHfCJwHW_bPhAQt_M0tR8umyPEeEGmqE5fnMJwVymArLF4C3ZtrTOhV0aZSQcnZr48xyCJd009ZmX_ROYer9-mA-536.avif?v=beea71a5 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/iIHfCJwHW_bPhAQt_M0tR8umyPEeEGmqE5fnMJwVymArLF4C3ZtrTOhV0aZSQcnZr48xyCJd009ZmX_ROYer9-mA.webp?v=116a40ea" width="536" height="402" loading="lazy" src="img/thumb/iIHfCJwHW_bPhAQt_M0tR8umyPEeEGmqE5fnMJwVymArLF4C3ZtrTOhV0aZSQcnZr48xyCJd009ZmX_ROYer9-mA-536.webp?v=3374d156"
+               alt="Оранжево-коричневый гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/iIHfCJwHW_bPhAQt_M0tR8umyPEeEGmqE5fnMJwVymArLF4C3ZtrTOhV0aZSQcnZr48xyCJd009ZmX_ROYer9-mA-360.webp?v=df6272de 360w, img/thumb/iIHfCJwHW_bPhAQt_M0tR8umyPEeEGmqE5fnMJwVymArLF4C3ZtrTOhV0aZSQcnZr48xyCJd009ZmX_ROYer9-mA-536.webp?v=3374d156 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -410,8 +397,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/vPc41kK-tj5F3WAVGhF40XbcPYiQVRb5xOf9vsBroLHiY9uJfIk60od--JU68Op0B3DB3XWeH5OYWFbzuNbV1YQE.webp?v=0e8fa896"
-               alt="Бордовый гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/vPc41kK-tj5F3WAVGhF40XbcPYiQVRb5xOf9vsBroLHiY9uJfIk60od--JU68Op0B3DB3XWeH5OYWFbzuNbV1YQE-360.avif?v=abc079ab 360w, img/thumb/vPc41kK-tj5F3WAVGhF40XbcPYiQVRb5xOf9vsBroLHiY9uJfIk60od--JU68Op0B3DB3XWeH5OYWFbzuNbV1YQE-536.avif?v=110054de 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/vPc41kK-tj5F3WAVGhF40XbcPYiQVRb5xOf9vsBroLHiY9uJfIk60od--JU68Op0B3DB3XWeH5OYWFbzuNbV1YQE.webp?v=0e8fa896" width="536" height="402" loading="lazy" src="img/thumb/vPc41kK-tj5F3WAVGhF40XbcPYiQVRb5xOf9vsBroLHiY9uJfIk60od--JU68Op0B3DB3XWeH5OYWFbzuNbV1YQE-536.webp?v=476dfa96"
+               alt="Бордовый гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/vPc41kK-tj5F3WAVGhF40XbcPYiQVRb5xOf9vsBroLHiY9uJfIk60od--JU68Op0B3DB3XWeH5OYWFbzuNbV1YQE-360.webp?v=9d814eff 360w, img/thumb/vPc41kK-tj5F3WAVGhF40XbcPYiQVRb5xOf9vsBroLHiY9uJfIk60od--JU68Op0B3DB3XWeH5OYWFbzuNbV1YQE-536.webp?v=476dfa96 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -429,8 +416,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/5vQy1HVzBlhm05rpxvsIaQ1BWGyE9r7-SqA-Ev_Q-B3wSoVGhuEuFaMIL9U1H6UQ5JFVx4hOcOtWDDp7IYVpaagL.webp?v=1edcbadf"
-               alt="Тёмный микс гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/5vQy1HVzBlhm05rpxvsIaQ1BWGyE9r7-SqA-Ev_Q-B3wSoVGhuEuFaMIL9U1H6UQ5JFVx4hOcOtWDDp7IYVpaagL-360.avif?v=29ef9f21 360w, img/thumb/5vQy1HVzBlhm05rpxvsIaQ1BWGyE9r7-SqA-Ev_Q-B3wSoVGhuEuFaMIL9U1H6UQ5JFVx4hOcOtWDDp7IYVpaagL-536.avif?v=b62ecc6b 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/5vQy1HVzBlhm05rpxvsIaQ1BWGyE9r7-SqA-Ev_Q-B3wSoVGhuEuFaMIL9U1H6UQ5JFVx4hOcOtWDDp7IYVpaagL.webp?v=1edcbadf" width="536" height="402" loading="lazy" src="img/thumb/5vQy1HVzBlhm05rpxvsIaQ1BWGyE9r7-SqA-Ev_Q-B3wSoVGhuEuFaMIL9U1H6UQ5JFVx4hOcOtWDDp7IYVpaagL-536.webp?v=18962cad"
+               alt="Тёмный микс гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/5vQy1HVzBlhm05rpxvsIaQ1BWGyE9r7-SqA-Ev_Q-B3wSoVGhuEuFaMIL9U1H6UQ5JFVx4hOcOtWDDp7IYVpaagL-360.webp?v=b1b1c3ed 360w, img/thumb/5vQy1HVzBlhm05rpxvsIaQ1BWGyE9r7-SqA-Ev_Q-B3wSoVGhuEuFaMIL9U1H6UQ5JFVx4hOcOtWDDp7IYVpaagL-536.webp?v=18962cad 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -448,8 +435,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/HTkD4frBnvUVGHnLg_BNrozchfc25U0a-YZeF9wLq1oIobxIDG7s2vUyBfL_6XfW5z8XYkpbeWLVb_fGRsLxVFiY.webp?v=b5012efd"
-               alt="Венге гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/HTkD4frBnvUVGHnLg_BNrozchfc25U0a-YZeF9wLq1oIobxIDG7s2vUyBfL_6XfW5z8XYkpbeWLVb_fGRsLxVFiY-360.avif?v=61be2b42 360w, img/thumb/HTkD4frBnvUVGHnLg_BNrozchfc25U0a-YZeF9wLq1oIobxIDG7s2vUyBfL_6XfW5z8XYkpbeWLVb_fGRsLxVFiY-536.avif?v=fcbbe8c3 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/HTkD4frBnvUVGHnLg_BNrozchfc25U0a-YZeF9wLq1oIobxIDG7s2vUyBfL_6XfW5z8XYkpbeWLVb_fGRsLxVFiY.webp?v=b5012efd" width="536" height="402" loading="lazy" src="img/thumb/HTkD4frBnvUVGHnLg_BNrozchfc25U0a-YZeF9wLq1oIobxIDG7s2vUyBfL_6XfW5z8XYkpbeWLVb_fGRsLxVFiY-536.webp?v=e894ee55"
+               alt="Венге гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/HTkD4frBnvUVGHnLg_BNrozchfc25U0a-YZeF9wLq1oIobxIDG7s2vUyBfL_6XfW5z8XYkpbeWLVb_fGRsLxVFiY-360.webp?v=68559575 360w, img/thumb/HTkD4frBnvUVGHnLg_BNrozchfc25U0a-YZeF9wLq1oIobxIDG7s2vUyBfL_6XfW5z8XYkpbeWLVb_fGRsLxVFiY-536.webp?v=e894ee55 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -467,8 +454,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY.webp?v=36391057"
-               alt="Графит с оранжевым гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY-360.avif?v=cf92d340 360w, img/thumb/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY-536.avif?v=cb68c40e 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY.webp?v=36391057" width="536" height="402" loading="lazy" src="img/thumb/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY-536.webp?v=407c445b"
+               alt="Графит с оранжевым гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY-360.webp?v=3e71650d 360w, img/thumb/b6WnHYntxoKELmEe60ajPGEfgUyIvSZ5FYiOdBr8dedCBWl90L97-m8ujX6a3-5ryvrPIS_pIa-NBfhuCQDCoiOY-536.webp?v=407c445b 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -486,8 +473,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf.webp?v=be192a70"
-               alt="Коричневый гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf-360.avif?v=62fff9e4 360w, img/thumb/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf-536.avif?v=d855d551 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf.webp?v=be192a70" width="536" height="402" loading="lazy" src="img/thumb/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf-536.webp?v=d70765ef"
+               alt="Коричневый гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf-360.webp?v=49e8e607 360w, img/thumb/RE5SIpT3pLfskhFPbJ8NS6iB6m_THHVSYPUq-s0Usx0akSAQTNNoL80O4vRKzV-vORN0gOyoTaKVTYtQXrlJPtbf-536.webp?v=d70765ef 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -505,8 +492,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/gfNFydiQq9X5-tCioypB3rP3W8ULp2RmbJjdagC-Yg-JaBrF6o8a8n1zcCIVokuf8NdxV7m2F-6599TxdWwVlqAb.webp?v=5a73ccb0"
-               alt="Шоколадно-кремовый гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/gfNFydiQq9X5-tCioypB3rP3W8ULp2RmbJjdagC-Yg-JaBrF6o8a8n1zcCIVokuf8NdxV7m2F-6599TxdWwVlqAb-360.avif?v=7b9e2cac 360w, img/thumb/gfNFydiQq9X5-tCioypB3rP3W8ULp2RmbJjdagC-Yg-JaBrF6o8a8n1zcCIVokuf8NdxV7m2F-6599TxdWwVlqAb-536.avif?v=f1f20367 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/gfNFydiQq9X5-tCioypB3rP3W8ULp2RmbJjdagC-Yg-JaBrF6o8a8n1zcCIVokuf8NdxV7m2F-6599TxdWwVlqAb.webp?v=5a73ccb0" width="536" height="402" loading="lazy" src="img/thumb/gfNFydiQq9X5-tCioypB3rP3W8ULp2RmbJjdagC-Yg-JaBrF6o8a8n1zcCIVokuf8NdxV7m2F-6599TxdWwVlqAb-536.webp?v=b92d66e4"
+               alt="Шоколадно-кремовый гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/gfNFydiQq9X5-tCioypB3rP3W8ULp2RmbJjdagC-Yg-JaBrF6o8a8n1zcCIVokuf8NdxV7m2F-6599TxdWwVlqAb-360.webp?v=67f764eb 360w, img/thumb/gfNFydiQq9X5-tCioypB3rP3W8ULp2RmbJjdagC-Yg-JaBrF6o8a8n1zcCIVokuf8NdxV7m2F-6599TxdWwVlqAb-536.webp?v=b92d66e4 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -524,8 +511,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/UqgtlXXTFyL1IfyUih_K1hppEYz_7tkj2Pr0nl36F6QOEbqocOwgsNUuSFtpda7ZoZ7QOtZkBadhSZ16zWV3qhsp.webp?v=902291f0"
-               alt="Зелёный гибкий кирпич" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/UqgtlXXTFyL1IfyUih_K1hppEYz_7tkj2Pr0nl36F6QOEbqocOwgsNUuSFtpda7ZoZ7QOtZkBadhSZ16zWV3qhsp-360.avif?v=0095e175 360w, img/thumb/UqgtlXXTFyL1IfyUih_K1hppEYz_7tkj2Pr0nl36F6QOEbqocOwgsNUuSFtpda7ZoZ7QOtZkBadhSZ16zWV3qhsp-536.avif?v=82ea0cf2 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/UqgtlXXTFyL1IfyUih_K1hppEYz_7tkj2Pr0nl36F6QOEbqocOwgsNUuSFtpda7ZoZ7QOtZkBadhSZ16zWV3qhsp.webp?v=902291f0" width="536" height="402" loading="lazy" src="img/thumb/UqgtlXXTFyL1IfyUih_K1hppEYz_7tkj2Pr0nl36F6QOEbqocOwgsNUuSFtpda7ZoZ7QOtZkBadhSZ16zWV3qhsp-536.webp?v=6ed6f33b"
+               alt="Зелёный гибкий кирпич" class="w-full h-full object-cover" / srcset="img/thumb/UqgtlXXTFyL1IfyUih_K1hppEYz_7tkj2Pr0nl36F6QOEbqocOwgsNUuSFtpda7ZoZ7QOtZkBadhSZ16zWV3qhsp-360.webp?v=f36f57c5 360w, img/thumb/UqgtlXXTFyL1IfyUih_K1hppEYz_7tkj2Pr0nl36F6QOEbqocOwgsNUuSFtpda7ZoZ7QOtZkBadhSZ16zWV3qhsp-536.webp?v=6ed6f33b 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -543,8 +530,8 @@
         <div
            class="catalog-card group relative rounded-xl overflow-hidden bg-stone-900 cursor-pointer shadow-lg shadow-stone-950/40 hover:shadow-xl hover:shadow-stone-950/50 transition-shadow duration-300">
         <div class="aspect-[4/3] overflow-hidden">
-          <img loading="lazy" src="img/palette.webp?v=c7adb36c"
-               alt="Песочный гибкий кирпич — светлый соломенный оттенок" class="w-full h-full object-cover" />
+          <picture><source type="image/avif" srcset="img/thumb/palette-360.avif?v=dccb0541 360w, img/thumb/palette-536.avif?v=a1824318 536w" sizes="(max-width: 640px) 50vw, 270px"><img data-full="img/palette.webp?v=c7adb36c" width="536" height="402" loading="lazy" src="img/thumb/palette-536.webp?v=7daf850d"
+               alt="Песочный гибкий кирпич — светлый соломенный оттенок" class="w-full h-full object-cover" / srcset="img/thumb/palette-360.webp?v=f4ea9c82 360w, img/thumb/palette-536.webp?v=7daf850d 536w" sizes="(max-width: 640px) 50vw, 270px"></picture>
         </div>
         <div class="catalog-overlay absolute inset-0 bg-amber-500/20 rounded-xl"></div>
         <div class="p-3">
@@ -579,9 +566,9 @@
     <div class="grid md:grid-cols-2 gap-8 items-center">
 
       <div class="rounded-2xl overflow-hidden shadow-lg shadow-stone-950/40">
-        <img loading="lazy" src="img/ttw_RCPqoXWe1-6KE9aQtdlIol_cGLGLpXmCLW4IShbn5GxVxCGz0i8T2h7Y20jH9lIza9La0xNAeagEKYLTOBz6.webp?v=0297d830"
+        <picture><source type="image/avif" srcset="img/ttw_RCPqoXWe1-6KE9aQtdlIol_cGLGLpXmCLW4IShbn5GxVxCGz0i8T2h7Y20jH9lIza9La0xNAeagEKYLTOBz6.avif?v=8d979171"><img width="560" height="420" loading="lazy" src="img/ttw_RCPqoXWe1-6KE9aQtdlIol_cGLGLpXmCLW4IShbn5GxVxCGz0i8T2h7Y20jH9lIza9La0xNAeagEKYLTOBz6.webp?v=0297d830"
              alt="Демонстрация гибкости кирпича Гибкий Кирпич"
-             class="w-full h-64 md:h-80 object-cover" />
+             class="w-full h-64 md:h-80 object-cover" /></picture>
       </div>
 
       <div>
@@ -743,7 +730,7 @@
         <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-lg shadow-stone-950/40 transition-shadow duration-300 hover:shadow-xl hover:shadow-stone-950/50">
           <div class="relative aspect-[4/3] overflow-hidden">
-            <img loading="lazy" src="img/gemini-2026-06-07-001.webp?v=bdd3ac13" alt="Фасад дома из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <picture><source type="image/avif" srcset="img/gemini-2026-06-07-001.avif?v=4335cde5"><img width="620" height="465" loading="lazy" src="img/gemini-2026-06-07-001.webp?v=bdd3ac13" alt="Фасад дома из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></picture>
             <span class="absolute bottom-2 right-2 z-10 text-[10px] tracking-wide px-2 py-0.5 rounded bg-stone-950/70 text-stone-300">визуализация</span>
             <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-amber-400 backdrop-blur-sm">Снаружи</span>
           </div>
@@ -760,7 +747,7 @@
         <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-lg shadow-stone-950/40 transition-shadow duration-300 hover:shadow-xl hover:shadow-stone-950/50">
           <div class="relative aspect-[4/3] overflow-hidden">
-            <img loading="lazy" src="img/apply-fence.webp?v=bfaf49fa" alt="Забор и входная группа из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <picture><source type="image/avif" srcset="img/apply-fence.avif?v=ca8aeb1a"><img width="620" height="465" loading="lazy" src="img/apply-fence.webp?v=bfaf49fa" alt="Забор и входная группа из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></picture>
             <span class="absolute bottom-2 right-2 z-10 text-[10px] tracking-wide px-2 py-0.5 rounded bg-stone-950/70 text-stone-300">визуализация</span>
             <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-amber-400 backdrop-blur-sm">Снаружи</span>
           </div>
@@ -777,7 +764,7 @@
         <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-lg shadow-stone-950/40 transition-shadow duration-300 hover:shadow-xl hover:shadow-stone-950/50">
           <div class="relative aspect-[4/3] overflow-hidden">
-            <img loading="lazy" src="img/apply-arch.webp?v=f4aa5f95" alt="Арки и колонны, отделанные гибким кирпичом" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <picture><source type="image/avif" srcset="img/apply-arch.avif?v=ac3cf7da"><img width="620" height="465" loading="lazy" src="img/apply-arch.webp?v=f4aa5f95" alt="Арки и колонны, отделанные гибким кирпичом" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></picture>
             <span class="absolute bottom-2 right-2 z-10 text-[10px] tracking-wide px-2 py-0.5 rounded bg-stone-950/70 text-stone-300">визуализация</span>
             <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-amber-400 backdrop-blur-sm">Внутри</span>
           </div>
@@ -794,7 +781,7 @@
         <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-lg shadow-stone-950/40 transition-shadow duration-300 hover:shadow-xl hover:shadow-stone-950/50">
           <div class="relative aspect-[4/3] overflow-hidden">
-            <img loading="lazy" src="img/apply-living.webp?v=fb330382" alt="Акцентная стена в интерьере из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <picture><source type="image/avif" srcset="img/apply-living.avif?v=6140a308"><img width="620" height="465" loading="lazy" src="img/apply-living.webp?v=fb330382" alt="Акцентная стена в интерьере из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></picture>
             <span class="absolute bottom-2 right-2 z-10 text-[10px] tracking-wide px-2 py-0.5 rounded bg-stone-950/70 text-stone-300">визуализация</span>
             <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-stone-200 backdrop-blur-sm">Внутри</span>
           </div>
@@ -811,7 +798,7 @@
         <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-lg shadow-stone-950/40 transition-shadow duration-300 hover:shadow-xl hover:shadow-stone-950/50">
           <div class="relative aspect-[4/3] overflow-hidden">
-            <img loading="lazy" src="img/apply-kitchen.webp?v=a84a107a" alt="Кухонный фартук из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <picture><source type="image/avif" srcset="img/apply-kitchen.avif?v=8543a63a"><img width="620" height="465" loading="lazy" src="img/apply-kitchen.webp?v=a84a107a" alt="Кухонный фартук из гибкого кирпича" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></picture>
             <span class="absolute bottom-2 right-2 z-10 text-[10px] tracking-wide px-2 py-0.5 rounded bg-stone-950/70 text-stone-300">визуализация</span>
             <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-stone-200 backdrop-blur-sm">Внутри</span>
           </div>
@@ -828,7 +815,7 @@
         <div
              class="apply-card group relative flex flex-col h-full rounded-2xl overflow-hidden bg-stone-900 shadow-lg shadow-stone-950/40 transition-shadow duration-300 hover:shadow-xl hover:shadow-stone-950/50">
           <div class="relative aspect-[4/3] overflow-hidden">
-            <img loading="lazy" src="img/apply-fireplace.webp?v=a8c0d3e3" alt="Камин, облицованный гибким кирпичом" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <picture><source type="image/avif" srcset="img/apply-fireplace.avif?v=e49d8196"><img width="620" height="465" loading="lazy" src="img/apply-fireplace.webp?v=a8c0d3e3" alt="Камин, облицованный гибким кирпичом" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></picture>
             <span class="absolute bottom-2 right-2 z-10 text-[10px] tracking-wide px-2 py-0.5 rounded bg-stone-950/70 text-stone-300">визуализация</span>
             <span class="absolute top-3 left-3 z-10 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-950/75 text-stone-200 backdrop-blur-sm">Внутри</span>
           </div>
