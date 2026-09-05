@@ -100,11 +100,25 @@ SHABLON = """<!DOCTYPE html>
 <body class="bg-stone-900 font-sans text-white antialiased">
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-stone-900/90 backdrop-blur-sm border-b border-stone-800">
-  <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between relative">
     <a href="/" class="flex items-center gap-2 md:flex-col md:items-start md:gap-0 leading-tight">
       <span class="font-heading font-bold text-amber-500 text-xl tracking-wide uppercase">Гибкий Кирпич</span>
       <span class="text-xs text-stone-300 md:text-[10px] md:text-stone-400">г. Саранск, ул. Рабочая, 185В</span>
     </a>
+    <details class="menu-mob md:hidden" id="menu-mob">
+      <summary aria-label="Меню разделов">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </summary>
+      <nav class="menu-mob__list">
+        <a href="/#catalog">Каталог цветов</a>
+        <a href="/#raschet-sec">Расчёт материала</a>
+        <a href="/blog/">Все статьи</a>
+        <a href="/#contact">Контакты</a>
+        <a href="/#contact" class="menu-mob__tel" data-tel>Позвонить</a>
+      </nav>
+    </details>
     <nav class="hidden md:flex items-center gap-6 text-sm text-stone-300">
       <a href="/#catalog" class="hover:text-amber-400 transition-colors">Каталог</a>
       <a href="/#raschet-sec" class="hover:text-amber-400 transition-colors">Расчёт</a>
@@ -138,6 +152,7 @@ SHABLON = """<!DOCTYPE html>
 <footer class="border-t border-stone-800 py-8 text-center text-stone-500 text-sm">
   <a href="/" class="hover:text-amber-400">Гибкий кирпич в Саранске</a> · ул. Рабочая, 185В
 </footer>
+<script defer src="/js/menu.js"></script>
 </body>
 </html>
 """
@@ -158,11 +173,25 @@ SHABLON_INDEX = """<!DOCTYPE html>
 <body class="bg-stone-900 font-sans text-white antialiased">
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-stone-900/90 backdrop-blur-sm border-b border-stone-800">
-  <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between relative">
     <a href="/" class="flex items-center gap-2 md:flex-col md:items-start md:gap-0 leading-tight">
       <span class="font-heading font-bold text-amber-500 text-xl tracking-wide uppercase">Гибкий Кирпич</span>
       <span class="text-xs text-stone-300 md:text-[10px] md:text-stone-400">г. Саранск, ул. Рабочая, 185В</span>
     </a>
+    <details class="menu-mob md:hidden" id="menu-mob">
+      <summary aria-label="Меню разделов">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </summary>
+      <nav class="menu-mob__list">
+        <a href="/#catalog">Каталог цветов</a>
+        <a href="/#raschet-sec">Расчёт материала</a>
+        <a href="/blog/">Все статьи</a>
+        <a href="/#contact">Контакты</a>
+        <a href="/#contact" class="menu-mob__tel" data-tel>Позвонить</a>
+      </nav>
+    </details>
     <nav class="hidden md:flex items-center gap-6 text-sm text-stone-300">
       <a href="/#catalog" class="hover:text-amber-400 transition-colors">Каталог</a>
       <a href="/#raschet-sec" class="hover:text-amber-400 transition-colors">Расчёт</a>
@@ -188,6 +217,7 @@ SHABLON_INDEX = """<!DOCTYPE html>
 <footer class="border-t border-stone-800 py-8 text-center text-stone-500 text-sm">
   <a href="/" class="hover:text-amber-400">Гибкий кирпич в Саранске</a> · ул. Рабочая, 185В
 </footer>
+<script defer src="/js/menu.js"></script>
 </body>
 </html>
 """

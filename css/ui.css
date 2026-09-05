@@ -114,3 +114,34 @@ html{ scroll-padding-top:76px }
    обёртка-блок между ним и родителем ломала бы позиционирование. display:contents
    убирает обёртку из потока, оставляя картинку прямым потомком. */
 picture { display: contents; }
+
+/* ── Меню разделов на телефоне ─────────────────────────────────────────────
+   Сделано на <details>, а не на скрипте: без навигации на узком экране сайт
+   длиной в шесть экранов листается только пальцем, и терять её при отключённом
+   JS нельзя. Нативный <details> раскрывается сам, скрипт лишь закрывает список
+   после выбора и по нажатию мимо. */
+.menu-mob > summary{
+  list-style:none; cursor:pointer;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:42px; height:42px;               /* палец промахивается по мелким целям */
+  border-radius:.625rem; color:#e7e5e4;
+  border:1px solid rgba(120,113,108,.55);
+}
+.menu-mob > summary::-webkit-details-marker{ display:none }   /* треугольник Safari */
+.menu-mob > summary::marker{ content:"" }
+.menu-mob > summary svg{ width:22px; height:22px }
+.menu-mob[open] > summary{ color:#fbbf24; border-color:rgba(245,158,11,.6) }
+
+.menu-mob__list{
+  position:absolute; right:1rem; top:calc(100% + .5rem);
+  z-index:60; min-width:14rem;
+  display:flex; flex-direction:column;
+  background:#292524; border:1px solid #44403c; border-radius:.875rem;
+  padding:.375rem; box-shadow:0 18px 40px rgba(0,0,0,.55);
+}
+.menu-mob__list a{
+  padding:.6rem .75rem; border-radius:.5rem;
+  color:#e7e5e4; font-weight:500; text-decoration:none;
+}
+.menu-mob__list a:active{ background:rgba(245,158,11,.16); color:#fbbf24 }
+.menu-mob__tel{ margin-top:.25rem; border-top:1px solid #44403c; color:#fbbf24 !important }

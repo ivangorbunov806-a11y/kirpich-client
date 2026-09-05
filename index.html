@@ -11,12 +11,13 @@
   <meta name="theme-color" content="#f59e0b">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/fonts.css?v=a82b9fe5">
-  <link rel="stylesheet" href="css/site.css?v=4bb1b486">
-  <link rel="stylesheet" href="css/ui.css?v=37251222">
+  <link rel="stylesheet" href="css/site.css?v=83cf811c">
+  <link rel="stylesheet" href="css/ui.css?v=de473791">
   <script defer src="js/alpine-intersect.min.js?v=534ca026"></script>
   <script defer src="js/alpine.min.js?v=63d2636a"></script>
   <script defer src="js/raschet.js?v=915047b5"></script>
-  <script defer src="js/obrazec.js?v=63f3704e"></script>
+  <script defer src="js/menu.js?v=9bf23a84"></script>
+<script defer src="js/obrazec.js?v=63f3704e"></script>
   <style>
     html { scroll-behavior: smooth; scroll-padding-top: 56px; }
     .hero-overlay {
@@ -71,16 +72,33 @@
   </script>
 </head>
 <body class="bg-stone-900 font-sans text-white antialiased">
+<span id="top"></span>
 
 <!-- ====================================================
      HEADER
      ==================================================== -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-stone-900/90 backdrop-blur-sm border-b border-stone-800">
-  <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
-    <div class="flex items-center gap-2 md:flex-col md:items-start md:gap-0 leading-tight">
+  <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between relative">
+    <a href="#top" class="flex items-center gap-2 md:flex-col md:items-start md:gap-0 leading-tight min-w-0 mr-2">
       <span class="font-heading font-bold text-amber-500 text-xl tracking-wide uppercase whitespace-nowrap">Гибкий Кирпич</span>
-      <span class="text-xs text-stone-300 md:text-[10px] md:text-stone-400 whitespace-nowrap">г. Саранск, ул. Рабочая, 185В</span>
-    </div>
+      <span class="text-xs text-stone-300 md:text-[10px] md:text-stone-400 whitespace-nowrap"><span class="min-[430px]:hidden">г. Саранск</span><span class="hidden min-[430px]:inline">г. Саранск, ул. Рабочая, 185В</span></span>
+    </a>
+    <details class="menu-mob md:hidden" id="menu-mob">
+      <summary aria-label="Меню разделов">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </summary>
+      <nav class="menu-mob__list">
+        <a href="#catalog">Каталог цветов</a>
+        <a href="#raschet-sec">Расчёт материала</a>
+        <a href="#plenka">Про плёнку</a>
+        <a href="#apply">Где используют</a>
+        <a href="/blog/">Статьи</a>
+        <a href="#contact">Контакты</a>
+        <a href="#contact" class="menu-mob__tel" data-tel>Позвонить</a>
+      </nav>
+    </details>
     <nav class="hidden md:flex items-center gap-1 text-sm">
       <a href="#plenka"    class="hidden lg:inline-block px-2 py-1.5 rounded-lg text-stone-200 font-medium whitespace-nowrap hover:text-amber-400 hover:bg-white/10 transition-colors">Плёнка</a>
       <a href="#catalog"   class="px-2 py-1.5 rounded-lg text-stone-200 font-medium whitespace-nowrap hover:text-amber-400 hover:bg-white/10 transition-colors">Каталог</a>
