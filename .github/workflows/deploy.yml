@@ -1,0 +1,91 @@
+# Сборка и публикация сайта на GitHub Pages.
+#
+# ЗАЧЕМ ИМЕННО ТАК. В репозитории лежит ШАБЛОН с тегами вида #INN#, а настоящие
+# реквизиты предпринимателя — в секрете REQUISITES_JSON. Так персональные данные
+# не попадают в git-историю: сменится адрес или ИНН — старое значение не останется
+# в старых коммитах навсегда. На самом сайте реквизиты, разумеется, видны всем —
+# этого требует закон о сведениях о продавце, и скрыть их нельзя.
+#
+# ЧТО ПРОИСХОДИТ ПРИ КАЖДОМ PUSH В master:
+#   1. секрет разворачивается в requisites.local.json (только внутри прогона);
+#   2. scripts/fill-requisites.py подставляет значения и складывает сайт в dist/;
+#   3. содержимое dist/ публикуется на saranskdekor.ru.
+#
+# ⚠️ CSS собран заранее и лежит в репозитории (css/site.css). В CI его НЕ пересобираем
+# намеренно: другая версия tailwind дала бы другой файл, и расхождение вылезло бы
+# на боевом, а не на машине, где его видно. Меняли разметку — пересоберите локально
+# и закоммитьте css/site.css вместе с ней.
+#
+# ⚠️ Файл CNAME с доменом лежит в корне репозитория и копируется в dist/ скриптом
+# сборки. Без него GitHub Pages отвяжет домен при первой же публикации.
+
+name: Публикация сайта
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:          # кнопка «запустить вручную» на вкладке Actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Одновременно идёт только одна публикация; новая отменяет предыдущую,
+# чтобы два прогона не выкладывали разные версии друг поверх друга.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  sborka:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Развернуть реквизиты из секрета
+        env:
+          REQUISITES_JSON: ${{ secrets.REQUISITES_JSON }}
+        run: |
+          if [ -z "$REQUISITES_JSON" ]; then
+            echo "::error::Секрет REQUISITES_JSON не задан — сайт вышел бы с тегами вместо реквизитов."
+            exit 1
+          fi
+          printf '%s' "$REQUISITES_JSON" > requisites.local.json
+          python -c "import json;json.load(open('requisites.local.json',encoding='utf-8'))" \
+            || { echo "::error::Секрет не является корректным JSON"; exit 1; }
+
+      - name: Собрать сайт
+        run: python scripts/fill-requisites.py
+
+      - name: Проверить, что подстановка прошла
+        run: |
+          # Тихий успех запрещён: если в готовой странице остался тег или подсказка
+          # образца, публикацию надо остановить здесь, а не увидеть это на боевом.
+          if grep -qE '#(IP_FIO|OGRNIP|INN|IP_ADDRESS|EMAIL)#' dist/index.html; then
+            echo "::error::В собранной странице остались неподставленные теги"; exit 1
+          fi
+          if grep -qF 'ДВЕНАДЦАТЬ ЦИФР ПОДРЯД' dist/index.html; then
+            echo "::error::В реквизитах остались подсказки образца"; exit 1
+          fi
+          test -f dist/CNAME || { echo "::error::Нет файла CNAME — домен отвяжется"; exit 1; }
+          echo "Проверки пройдены. Домен: $(cat dist/CNAME)"
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  publikaciya:
+    needs: sborka
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
