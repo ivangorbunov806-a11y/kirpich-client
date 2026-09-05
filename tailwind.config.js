@@ -1,7 +1,7 @@
 /** Конфиг перенесён один в один из inline-блока index.html (там он выполнялся
  *  CDN-версией Tailwind прямо в браузере). Теперь по нему собирается статический CSS. */
 module.exports = {
-  content: ["./index.html", "./svetlo.html", "./blog/**/*.html"],
+  content: ["./index.html", "./blog/**/*.html"],
   theme: {
     extend: {
       colors: {
