@@ -140,7 +140,7 @@ def main() -> int:
     # blog/ и video/, появившиеся позже — скрипт собрал dist/ без них и сам же поймал
     # это проверкой ссылок. Добавляя на сайт новую папку, дописывать её СЮДА.
     for name in ("css", "js", "img", "fonts", "video", "blog",
-                 "favicon.svg", "CNAME", "robots.txt", "sitemap.xml"):
+                 "favicon.svg", "robots.txt", "sitemap.xml"):
         src = ROOT / name
         if not src.exists():
             continue
